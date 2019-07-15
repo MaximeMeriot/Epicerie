@@ -1,7 +1,7 @@
 <?php include('header.html');
 
 ?>
-<form action="" method="POST" class="contain m-auto col-8">
+<form action="index.php?controller=connect&action=connexion" method="POST" class="contain m-auto col-8">
 
   <h1 class="text-center">Formulaire d'inscription</h1>
   <div class="form-group">
