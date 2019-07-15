@@ -1,7 +1,9 @@
 <?php include('header.html');
 
-?><form action="" method="POST" class="contain m-auto col-8">
+?>
+<form action="" method="POST" class="contain m-auto col-8">
 
+  <h1 class="text-center">Formulaire d'inscription</h1>
   <div class="form-group">
     <label for="nom">Nom</label>
     <input name="nom" type="text" class="form-control" id="nom" placeholder="Votre nom">
@@ -22,7 +24,7 @@
     <label for="mail">Adresse Mail</label>
     <input name="mail" type="email" class="form-control" id="mail" placeholder="Votre adresse électronique">
   </div>
-  
+
   <div class="form-group">
     <label for="password">Mot de passe</label>
     <input name="password" type="password" class="form-control" id="password" placeholder="Entrez un mot de passe">
