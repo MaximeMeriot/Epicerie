@@ -1,0 +1,66 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Client
+#------------------------------------------------------------
+
+CREATE TABLE Client(
+        id_client     Int  Auto_increment  NOT NULL ,
+        nom_client    Varchar (50) NOT NULL ,
+        prenom_client Varchar (50) NOT NULL ,
+        societe       Varchar (50) NOT NULL ,
+        mdp           Varchar (50) NOT NULL ,
+        email         Varchar (50) NOT NULL ,
+        admin         Bool NOT NULL
+	,CONSTRAINT Client_PK PRIMARY KEY (id_client)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Produit
+#------------------------------------------------------------
+
+CREATE TABLE Produit(
+        id_produit    Int  Auto_increment  NOT NULL ,
+        nom_produit   Varchar (50) NOT NULL ,
+        description   Varchar (255) NOT NULL ,
+        photo         Varchar (50) NOT NULL ,
+        prix_unitaire Varchar (50) NOT NULL ,
+        qte_stock     Varchar (50) NOT NULL
+	,CONSTRAINT Produit_PK PRIMARY KEY (id_produit)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Entete_commande
+#------------------------------------------------------------
+
+CREATE TABLE Entete_commande(
+        num_commande  Varchar (255) NOT NULL ,
+        date_commande Date NOT NULL ,
+        id_client     Int NOT NULL
+	,CONSTRAINT Entete_commande_PK PRIMARY KEY (num_commande)
+
+	,CONSTRAINT Entete_commande_Client_FK FOREIGN KEY (id_client) REFERENCES Client(id_client)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Detail_commande
+#------------------------------------------------------------
+
+CREATE TABLE Detail_commande(
+        id_ligne_commande Int  Auto_increment  NOT NULL ,
+        etat_commande     Varchar (255) NOT NULL ,
+        qte_prdt_commande Int NOT NULL ,
+        num_commande      Varchar (255) NOT NULL ,
+        id_produit        Int NOT NULL
+	,CONSTRAINT Detail_commande_PK PRIMARY KEY (id_ligne_commande)
+
+	,CONSTRAINT Detail_commande_Entete_commande_FK FOREIGN KEY (num_commande) REFERENCES Entete_commande(num_commande)
+	,CONSTRAINT Detail_commande_Produit0_FK FOREIGN KEY (id_produit) REFERENCES Produit(id_produit)
+)ENGINE=InnoDB;
+
