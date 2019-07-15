@@ -18,8 +18,4 @@ class Controller {
     }
 
 
-    public function dispatch() {
-
-    }
-
 }
