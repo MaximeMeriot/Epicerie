@@ -1,0 +1,3 @@
+<?php
+
+include "Dispatcher.php";
