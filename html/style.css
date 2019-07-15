@@ -1,0 +1,43 @@
+div.inner {
+    background : black;
+    color : white;
+}
+
+.smallImg {
+
+    max-width : 200px;
+}
+.nav-link{
+    color : white;
+}
+
+.page-footer {
+    color : white;
+    background : black;
+}
+
+.product {
+    width : 100%;
+    
+}
+
+
+p{
+    margin-bottom  : 0px;
+}
+
+.imgTab {
+   max-width : 285px;
+}
+
+.container h1 {
+    text-align : center;
+}
+
+.container {
+    margin-top : 1rem;
+}
+
+#connexion.margin-bottom {
+    margin-bottom : 4rem;
+}
