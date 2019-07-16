@@ -1,7 +1,6 @@
 <?php
 
-include 'View.php';
-include 'Model.php';
+
 
 class Controller {
 

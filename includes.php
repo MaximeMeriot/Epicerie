@@ -8,7 +8,7 @@ include "Controller/AdminController.php";
 //INCLUSION DES MODEL
 include "Model/MotherModel.php";
 include "Model/AdminModel.php";
-include "Model/ConnectModel.php"
+include "Model/ConnectModel.php";
 
 //INCLUSION DES VIEWS
 include "View/MotherView.php";
