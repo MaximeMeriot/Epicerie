@@ -2,7 +2,7 @@
 
 
 
-class Controller {
+class AdminController {
 
     private $model;
     private $view;
@@ -13,6 +13,12 @@ class Controller {
         $this->view= new AdminView();
 
     }
+//-------------------------------------------------------------------------------------------------------------------------
+    public function showAction(){
+    
+        $this->view->displayHome();
+    }
+//-------------------------------------------------------------------------------------------------------------------------
 
 
 }
