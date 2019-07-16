@@ -15,10 +15,19 @@ class ConnectModel extends MotherModel {
         $requete->bindParam(':prenom',$prenom);
         $requete->bindParam(':societe',$societe);
         $requete->bindParam(':email',$email);
-        $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $requete->bindParam(':mdp', $hash);
+        $requete->bindParam(':mdp', $mdp);
         
         $requete->execute();
+    }
+
+    public function testLogin($email){
+        $requete = $this->connexion->prepare('SELECT * FROM client WHERE email= :email');
+        $requete->bindParam(':email', $email);
+        $requete->execute();
+        $liste = $requete->fetch(PDO::FETCH_ASSOC);
+        if(isset($liste)) {
+            return $liste[0]; // On retourne la liste au point 0 car la liste est sous forme de tableau double -> $liste[0]['nom'];
+        }
     }
 
 }
