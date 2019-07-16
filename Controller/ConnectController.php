@@ -1,8 +1,4 @@
 <?php
-
-include 'ConnectView.php';
-include 'ConnectModel.php';
-
 class Controller extends  {
 
     private $view;
