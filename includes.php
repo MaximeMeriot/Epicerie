@@ -14,3 +14,5 @@ include "Model/ConnectModel.php";
 include "View/MotherView.php";
 include "View/AdminView.php";
 include "View/ConnectView.php";
+
+include "Dispatcher.php";

@@ -2,7 +2,7 @@
 
 
 
-class Controller {
+class MotherController {
 
     private $view;
     private $model;
