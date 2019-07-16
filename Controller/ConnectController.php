@@ -3,7 +3,7 @@
 include 'View.php';
 include 'Model.php';
 
-class Controller {
+class Controller extends  {
 
     private $view;
     private $model;
