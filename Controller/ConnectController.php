@@ -1,5 +1,5 @@
 <?php
-class ConnectController extends  {
+class ConnectController extends MotherController {
 
 
 }
