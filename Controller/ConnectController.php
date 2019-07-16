@@ -16,4 +16,13 @@ class ConnectController extends MotherController {
     public function registerAction() {
         $this->view->displayRegister();
     }
+
+    public function addClientAction(){
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $societe = $_POST['societe'];
+        $email = $_POST['email'];
+        $mdp = $_POST['nom'];
+        $this->model->addClient($nom, $prenom, $societe, $email, $mdp);
+    }
 }

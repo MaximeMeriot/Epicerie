@@ -7,13 +7,18 @@ class ConnectModel extends MotherModel {
     }
 
 
-    public function addClient($lastName, $firstName, $society, $email, $password){}
-    $requete = $this->connexion->prepare("INSERT INTO epicerie
-        VALUES (NULL, :nom, :type)");
+    public function addClient($nom, $prenom, $societe, $email, $mdp){
+    $requete = $this->connexion->prepare("INSERT INTO client
+        VALUES (NULL, :nom, :prenom, :societe, :email, :mdp)");
 
         $requete->bindParam(':nom',$nom);
-        $requete->bindParam(':type',$type);
-
+        $requete->bindParam(':prenom',$prenom);
+        $requete->bindParam(':societe',$societe);
+        $requete->bindParam(':email',$email);
+        $hash = password_hash($mdp, PASSWORD_DEFAULT);
+        $requete->bindParam(':mdp', $hash);
+        
         $requete->execute();
-}
+    }
 
+}
