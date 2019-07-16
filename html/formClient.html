@@ -1,0 +1,32 @@
+<form action="index.php?controller=AdminClients&action={{action}}" method="POST" class="text-center">
+    <h1 class="display-4 my-5 text-center">Informations item</h1>
+  <div class="form-group">
+    <label for="id">id</label>
+    <input type="text" class="form-control" id="id_produit" placeholder="" name="id_produit" value="{{id_produit}}" readonly>
+  </div>
+  <div class="form-group">
+    <label for="code">Nom</label>
+    <input type="text" class="form-control" id="nom" placeholder="" name="nom" value="{{nom}}" {{read}}>
+  </div>
+  <div class="form-group">
+    <label for="designation">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="" name="description" value="{{description}}"{{read}}>
+  </div>
+  <div class="form-group">
+    <label for="prix">Photo</label>
+    <input type="text" class="form-control" id="photo" placeholder="" name="photo" value="{{photo}}"{{read}}>
+  </div>
+  <div class="form-group">
+      <label for="designation">Prix unitaire</label>
+      <input type="text" class="form-control" id="prix" placeholder="" name="prix" value="{{prix}}"{{read}}>
+    </div>
+    <div class="form-group">
+        <label for="designation">Quantité en stock</label>
+        <input type="text" class="form-control" id="qte" placeholder="" name="qte" value="{{qte}}"{{read}}>
+      </div>
+    
+  <input type="submit" class="btn btn-primary my-2" value="{{action}}" name="action">
+  <a class="btn btn-danger" href="index.php?controller=AdminClients&action=list" role="button">annuler</a>
+
+
+</form>
