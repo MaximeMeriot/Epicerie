@@ -1,7 +1,7 @@
 <?php
 
-include 'View.php';
-include 'Model.php';
+include 'ConnectView.php';
+include 'ConnectModel.php';
 
 class Controller extends  {
 

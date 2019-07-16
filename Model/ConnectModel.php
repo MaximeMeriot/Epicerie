@@ -1,6 +1,6 @@
 <?php
 
-class Model {
+class Model extends MotherModel{
 
     const SERVER = "localhost";
     const USER = "root";

@@ -1,6 +1,22 @@
 <?php
 
-include "Dispatcher.php";
+//INCLUSION DES CONTROLLERS 
+include "Controller/MotherController.php";
+include "Controller/ConnectController.php";
+include "Controller/AdminController.php";
 
-include 'AdminView.php';
-include 'AdminModel.php';
+//INCLUSION DES MODEL
+include "Model/MotherModel.php";
+include "Model/AdminModel.php";
+include "Model/ConnectModel.php"
+
+//INCLUSION DES VIEWS
+include "View/MotherView.php";
+include "View/AdminView.php";
+include "View/ConnectView.php";
+
+
+
+
+//INCLUSION AUTRES
+include "Dispatcher.php";
