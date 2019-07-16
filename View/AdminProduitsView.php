@@ -1,7 +1,7 @@
 <?php
 
 
-class AdminClientsView extends MotherView {
+class AdminProduitsView extends MotherView {
 
     protected $page;
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ public function displayList($list){
 
     $table='
     <div class="row justify-content-center">
-    <a class="btn btn-primary my-5 mx-2 btn-block btn-lg" href="index.php?controller=AdminClients&action=add" role="button">Ajouter un item</a>
+    <a class="btn btn-primary my-5 mx-2 btn-block btn-lg" href="index.php?controller=AdminProduits&action=add" role="button">Ajouter un item</a>
     </div>';
 
 
@@ -69,8 +69,8 @@ public function displayList($list){
             <td>'.$value["photo"].'</td>
             <td>'.$value["prix_unitaire"].'</td>
             <td>'.$value["qte_stock"].'</td>
-            <td><a class="btn btn-danger" href="index.php?controller=AdminClients&action=delete&id_produit='.$value["id_produit"].'" role="button">Supprimer</a></td>
-            <td><a class="btn btn-primary" href="index.php?controller=AdminClients&action=update&id_produit='.$value["id_produit"].'" role="button">Modifier</a></td>
+            <td><a class="btn btn-danger" href="index.php?controller=AdminProduits&action=delete&id_produit='.$value["id_produit"].'" role="button">Supprimer</a></td>
+            <td><a class="btn btn-primary" href="index.php?controller=AdminProduits&action=update&id_produit='.$value["id_produit"].'" role="button">Modifier</a></td>
             
 
         <tr>';
@@ -90,7 +90,7 @@ public function displayList($list){
 //--------------------------------------------------------------------------------------------------------------------------------------
 private function displayForm($id_produit,$nom,$description,$photo,$prix,$qte,$action,$read){
 
-    $this->page.=$this->searchHTML("html/formClient.html");
+    $this->page.=$this->searchHTML("html/formProduits.html");
 
     $this->page=str_replace("{{action}}",$action,$this->page);
     $this->page=str_replace("{{id_produit}}",$id_produit,$this->page);

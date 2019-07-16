@@ -1,7 +1,7 @@
 <?php
 
 
-class AdminClientsModel extends MotherModel{
+class AdminProduitsModel extends MotherModel{
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------   

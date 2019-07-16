@@ -2,15 +2,15 @@
 
 
 
-class AdminClientsController {
+class AdminProduitsController {
 
     private $model;
     private $view;
 
     public function __construct(){
 
-        $this->model= new AdminClientsModel();
-        $this->view= new AdminClientsView();
+        $this->model= new AdminProduitsModel();
+        $this->view= new AdminProduitsView();
 
     }
 //-------------------------------------------------------------------------------------------------------------------------

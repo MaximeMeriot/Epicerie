@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 15, 2019 at 02:44 PM
+-- Generation Time: Jul 16, 2019 at 09:57 AM
 -- Server version: 5.7.25
 -- PHP Version: 7.3.1
 
@@ -41,17 +41,23 @@ CREATE TABLE `Produit` (
 
 INSERT INTO `Produit` (`id_produit`, `nom_produit`, `description`, `photo`, `prix_unitaire`, `qte_stock`) VALUES
 (1, 'Poulet', 'Emincé de poulet', 'img/poulet.jpg', '5', '10'),
-(2, 'Salade', 'Feuilles de salade lavée prête à l\'emploi', 'img/salade', '2', '10'),
-(3, 'Parmesan', 'Fromage parmesan', 'img/parmesan', '25', '5'),
-(4, 'Sauce César', 'Sauce pour salade César', 'img/sauce', '7', '5'),
-(5, 'Croutons', 'Croutons de pain', 'img/crouton', '4', '10'),
-(6, 'Lardons', 'Lardons fumés', 'img/lardon', '3', '10'),
-(7, 'Oignons', 'Oignons origine France', 'img/oignon', '5', '10'),
-(8, 'Pommes de terre', 'Pommes de terre origine UE', 'img/patate', '7', '20'),
-(9, 'Bananes', 'bananes bio origine France', 'img/banane', '3', '5'),
-(10, 'Oeufs', 'Oeufs frais moyen bio', 'img/oeuf', '4', '7'),
-(11, 'Sucre', 'Sucre en poudre', 'img/sucre', '3', '10'),
-(12, 'Farine', 'Farine de blé', 'img/farine', '4', '10');
+(2, 'Salade', 'Feuilles de salade lavée prête à l\'emploi', 'img/salade.jpg', '2', '10'),
+(3, 'Parmesan', 'Fromage parmesan', 'img/parmesan.jpg', '25', '5'),
+(4, 'Sauce', 'Sauce pour salade César', 'img/sauce.jpg', '7', '5'),
+(5, 'Croutons', 'Croutons de pain', 'img/crouton.jpg', '4', '10'),
+(6, 'Lardons', 'Lardons fumés', 'img/lardon.jpg', '3', '10'),
+(7, 'Oignons', 'Oignons origine France', 'img/oignon.jpg', '5', '10'),
+(8, 'Patates', 'Pommes de terre origine UE', 'img/patate.jpg', '7', '20'),
+(9, 'Bananes', 'bananes bio origine France', 'img/banane.jpg', '3', '5'),
+(10, 'Oeufs', 'Oeufs frais moyen bio', 'img/oeuf.jpg', '4', '7'),
+(11, 'Sucre', 'Sucre en poudre', 'img/sucre.jpg', '3', '10'),
+(13, 'Tomates', 'Tomates origine France', 'img/tomate.jpg', '3', '10'),
+(14, 'Melon', 'Melon français', 'img/melon.jpg', '4', '5'),
+(15, 'Jambon', 'Jambon blanc', 'img/jambon.jpg', '6', '6'),
+(16, 'Feta', 'Feta origine Grèce', 'img/feta.jpg', '9', '3'),
+(17, 'Chèvre', 'Chèvre fermier', 'img/chevre.jpg', '6', '3'),
+(18, 'Concombre', 'Concombre origine UE', 'img/concombre.jpg', '2', '7'),
+(19, 'Olives', 'Olives', 'img/olive.jpg', '7', '5');
 
 --
 -- Indexes for dumped tables
@@ -71,7 +77,7 @@ ALTER TABLE `Produit`
 -- AUTO_INCREMENT for table `Produit`
 --
 ALTER TABLE `Produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
