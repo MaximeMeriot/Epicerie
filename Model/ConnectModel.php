@@ -1,7 +1,7 @@
 <?php
 
-class ConnectModel extends MotherModel{
-
+class ConnectModel extends MotherModel {
+    
 
 }
 

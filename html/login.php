@@ -1,6 +1,3 @@
-<?php include('header.html');
-
-?>
 <div class="container mb-4">
 	<div class="row">
     	<div class="container col-4" id="formContainer">
@@ -21,6 +18,3 @@
         </div> <!-- /container -->
 	</div>
 </div>
-
-<?php include('footer.html');
-?>
