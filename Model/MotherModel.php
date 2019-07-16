@@ -7,7 +7,7 @@ abstract class MotherModel{
     const SERVER="localhost";
     const USER="root";
     const PASSWORD="";
-    const BASE="test";
+    const BASE="cefii";
 
     protected $connexion;
     
