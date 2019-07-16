@@ -1,7 +1,7 @@
 <?php
 
 
-class AdminClientsModel extends MotherModel{
+class AdminProduitsModel extends MotherModel{
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------   
@@ -36,12 +36,13 @@ class AdminClientsModel extends MotherModel{
  public function updateItem($id_produit,$nom,$description,$photo,$prix,$qte){
 
     $requete = $this->connexion->prepare("UPDATE produit
-    SET nom = :nom,
+    SET nom_produit = :nom,
     description = :description,
     photo = :photo,
-    prix = :prix,
-    qte = :qte
+    prix_unitaire = :prix,
+    qte_stock = :qte
     WHERE id_produit= :id_produit");
+
 
     $requete->bindParam(':id_produit',$id_produit);
     $requete->bindParam(':nom',$nom);

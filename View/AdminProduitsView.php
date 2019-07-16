@@ -1,7 +1,7 @@
 <?php
 
 
-class AdminClientsView extends MotherView {
+class AdminProduitsView extends MotherView {
 
     protected $page;
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -36,14 +36,14 @@ public function displayList($list){
 
     $table='
     <div class="row justify-content-center">
-    <a class="btn btn-primary my-5 mx-2 btn-block btn-lg" href="index.php?controller=AdminClients&action=add" role="button">Ajouter un item</a>
+    <a class="btn btn-primary my-5 mx-2 btn-block btn-lg" href="index.php?controller=AdminProduits&action=add" role="button">Ajouter un item</a>
     </div>';
 
 
 
     $table.= "<h5> Base de données - Utilisateurs -</h5>";
     $table.='
-    <div class="row my-5">
+    <div class="row my-5 table-responsive">
     <table class="table my-5">
         <thead>
           <tr>
@@ -53,7 +53,8 @@ public function displayList($list){
             <th scope="col">Photo</th> 
             <th scope="col">Prix unitaire</th> 
             <th scope="col">Quantité en stock</th> 
-            <th scope="col"></th>         
+            <th scope="col"></th>     
+            <th scope="col"></th>     
           </tr>
         </thead>
         <tbody>                        
@@ -68,9 +69,9 @@ public function displayList($list){
             <td>'.$value["photo"].'</td>
             <td>'.$value["prix_unitaire"].'</td>
             <td>'.$value["qte_stock"].'</td>
-            <td><a class="btn btn-danger" href="index.php?controller=AdminClients&action=delete&id_produit='.$value["id_produit"].'" role="button">Supprimer</a>
-            <a class="btn btn-primary" href="index.php?controller=AdminClients&action=update&id_produit='.$value["id_produit"].'" role="button">Modifier</a>
-            </td>
+            <td><a class="btn btn-danger" href="index.php?controller=AdminProduits&action=delete&id_produit='.$value["id_produit"].'" role="button">Supprimer</a></td>
+            <td><a class="btn btn-primary" href="index.php?controller=AdminProduits&action=update&id_produit='.$value["id_produit"].'" role="button">Modifier</a></td>
+            
 
         <tr>';
     
@@ -89,7 +90,7 @@ public function displayList($list){
 //--------------------------------------------------------------------------------------------------------------------------------------
 private function displayForm($id_produit,$nom,$description,$photo,$prix,$qte,$action,$read){
 
-    $this->page.=$this->searchHTML("html/formClient.html");
+    $this->page.=$this->searchHTML("html/formProduits.html");
 
     $this->page=str_replace("{{action}}",$action,$this->page);
     $this->page=str_replace("{{id_produit}}",$id_produit,$this->page);
@@ -97,7 +98,7 @@ private function displayForm($id_produit,$nom,$description,$photo,$prix,$qte,$ac
     $this->page=str_replace("{{description}}",$description,$this->page);
     $this->page=str_replace("{{photo}}",$photo,$this->page);
     $this->page=str_replace("{{prix}}",$prix,$this->page);
-    $this->page=str_replace("{{qte}}",$photo,$this->page);
+    $this->page=str_replace("{{qte}}",$qte,$this->page);
     $this->page=str_replace("{{read}}",$read,$this->page);
     $this->display();
 }
@@ -110,12 +111,12 @@ public function displayAdd(){
 //--------------------------------------------------------------------------------------------------------------------------------------
 public function displayUpdate($item){
         
-    $this->displayForm($item['id_produit'],$item['nom'],$item['description'],$item['photo'],$item['prix'],$item['qte'],"modifier","");
+    $this->displayForm($item['id_produit'],$item['nom_produit'],$item['description'],$item['photo'],$item['prix_unitaire'],$item['qte_stock'],"modifier","");
 }
 //--------------------------------------------------------------------------------------------------------------------------------------
 public function displayDelete($item){
 
-    $this->displayForm($item['id_produit'],$item['nom'],$item['description'],$item['photo'],$item['prix'],$item['qte'],"supprimer","readonly");
+    $this->displayForm($item['id_produit'],$item['nom_produit'],$item['description'],$item['photo'],$item['prix_unitaire'],$item['qte_stock'],"supprimer","readonly");
 
 }
 
