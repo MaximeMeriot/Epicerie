@@ -1,16 +1,33 @@
 <?php
 
 
-class AdminView extends MotherView{
+class AdminView {
 
 
 
+    protected $page;
+//--------------------------------------------------------------------------------------------------------------------------------------
+    public function __construct(){
+        $this->page=$this->searchHtml("html/header.html");
+        $this->page.=$this->searchHtml("html/adminNav.html");
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------
 
-    
- //--------------------------------------------------------------------------------------------------------------------------------------
- public function displayHome(){
+    protected function searchHtml($page){
 
-    $this->page.=$this->searchHTML("html/accueil.html");
+        return file_get_contents($page);
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------
+    protected function display(){
+        $this->page.=$this->searchHTML("html/footer.html");
+        echo $this->page;
+  
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------
+
+    public function displayHome(){
+
+    $this->page.=$this->searchHTML("html/adminAccueil.html");
     $this->display();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------
