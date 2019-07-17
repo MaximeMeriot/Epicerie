@@ -14,6 +14,7 @@ class ConnectModel extends MotherModel {
         $requete->bindParam(':mdp', $mdp);
         $requete->bindParam(':email',$email);
         $resultat = $requete->execute();
+    
 }
 
     public function testLogin($email){
