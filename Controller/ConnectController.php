@@ -35,17 +35,19 @@ class ConnectController extends MotherController {
         if (password_verify($mdp, $liste['mdp'])) {
             if($liste['admin'] == "1") {
                 $this->view->displayConnexionOkAdmin($liste['prenom_client']);
+
                 session_start([
                     'cookie_lifetime' => 3600,
                 ]); 
                 $_SESSION['admin'] = true;
             }
+            else {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
             session_start([
                 'cookie_lifetime' => 3600,
-               
             ]); 
             $_SESSION['admin'] = false;
+            }
         }
         else {
             $this->view->displayConnexionNok();
