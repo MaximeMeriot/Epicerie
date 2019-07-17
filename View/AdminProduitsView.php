@@ -66,7 +66,7 @@ public function displayList($list){
             <td>'.$value["id_produit"].'</td>
             <td>'.$value["nom_produit"].'</td>
             <td>'.$value["description"].'</td>
-            <td>'.$value["photo"].'</td>
+            <td><img src=img/'.$value["photo"].'></img></td>
             <td>'.$value["prix_unitaire"].'</td>
             <td>'.$value["qte_stock"].'</td>
             <td><a class="btn btn-danger" href="index.php?controller=AdminProduits&action=delete&id_produit='.$value["id_produit"].'" role="button">Supprimer</a></td>

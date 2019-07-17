@@ -2,23 +2,19 @@
 
 class ConnectModel extends MotherModel {
 
-    public function __construct(){
-        parent:: __construct();
-    }
 
+    public function addClient($nom, $prenom, $societe, $mdp, $email){
 
-    public function addClient($nom, $prenom, $societe, $email, $mdp){
-    $requete = $this->connexion->prepare("INSERT INTO client
-        VALUES (NULL, :nom, :prenom, :societe, :email, :mdp)");
+    $requete = $this->connexion->prepare('INSERT INTO client
+        VALUES (NULL, :nom_client, :prenom_client, :societe, :mdp, :email, "0")');
 
-        $requete->bindParam(':nom',$nom);
-        $requete->bindParam(':prenom',$prenom);
+        $requete->bindParam(':nom_client',$nom);
+        $requete->bindParam(':prenom_client',$prenom);
         $requete->bindParam(':societe',$societe);
-        $requete->bindParam(':email',$email);
         $requete->bindParam(':mdp', $mdp);
-        
-        $requete->execute();
-    }
+        $requete->bindParam(':email',$email);
+        $resultat = $requete->execute();
+}
 
     public function testLogin($email){
         $requete = $this->connexion->prepare('SELECT * FROM client WHERE email= :email');
@@ -26,8 +22,7 @@ class ConnectModel extends MotherModel {
         $requete->execute();
         $liste = $requete->fetch(PDO::FETCH_ASSOC);
         if(isset($liste)) {
-            return $liste[0]; // On retourne la liste au point 0 car la liste est sous forme de tableau double -> $liste[0]['nom'];
+            return $liste; // On retourne la liste au point 0 car la liste est sous forme de tableau double -> $liste[0]['nom'];
         }
     }
-
 }
