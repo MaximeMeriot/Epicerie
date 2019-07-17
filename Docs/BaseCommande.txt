@@ -1,0 +1,21 @@
+SELECT *
+    FROM detail_commande
+    INNER JOIN entete_commande ON detail_commande.num_commande=entete_commande.num_commande
+    INNER JOIN produit ON detail_commande.id_produit=produit.id_produit
+
+
+array (size=1)
+  0 => 
+    array (size=12)
+      'id_ligne_commande' => string '1' (length=1)
+      'etat_commande' => string 'En cours' (length=8)
+      'qte_prdt_commande' => string '10' (length=2)
+      'num_commande' => string '1200' (length=4)
+      'id_produit' => string '17' (length=2)
+      'date_commande' => string '2019-07-02' (length=10)
+      'id_client' => string '3' (length=1)
+      'nom_produit' => string 'Ch?vre' (length=6)
+      'description' => string 'Ch?vre fermier' (length=14)
+      'photo' => string 'img/chevre.jpg' (length=14)
+      'prix_unitaire' => string '6' (length=1)
+      'qte_stock' => string '3' (length=1)

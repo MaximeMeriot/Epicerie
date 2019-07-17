@@ -16,7 +16,9 @@ class AdminController {
 //-------------------------------------------------------------------------------------------------------------------------
     public function showAction(){
     
-        $this->view->displayHome();
+        if($_SESSION['admin']){
+            $this->view->displayHome();
+        }else (header("Location: index.php?controller=Connect&action=unauthorized"));
     }
 //-------------------------------------------------------------------------------------------------------------------------
 
