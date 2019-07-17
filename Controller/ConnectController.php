@@ -33,10 +33,19 @@ class ConnectController extends MotherController {
         $mdp = $_POST['mdp'];
         $liste = $this->model->testLogin($email);
         if (password_verify($mdp, $liste['mdp'])) {
-            $this->view->displayConnexionOk($liste['prenom_client']);
+            if($liste['admin'] == "1") {
+                $this->view->displayConnexionOkAdmin($liste['prenom_client']);
+                session_start([
+                    'cookie_lifetime' => 3600,
+                ]); 
+                $_SESSION['admin'] = true;
+            }
+            $this->view->displayConnexionOkClient($liste['prenom_client']);
             session_start([
                 'cookie_lifetime' => 3600,
-            ]);
+               
+            ]); 
+            $_SESSION['admin'] = false;
         }
         else {
             $this->view->displayConnexionNok();
@@ -44,5 +53,9 @@ class ConnectController extends MotherController {
             var_dump($mdp);
         }
 
+    }
+
+    public function unauthorizedAction(){
+        $this->view->displayUnauthorized();
     }
 }

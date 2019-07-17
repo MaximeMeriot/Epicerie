@@ -3,6 +3,7 @@
 //INCLUSION DES CONTROLLERS 
 include "Controller/MotherController.php";
 include "Controller/ConnectController.php";
+include "Controller/HistoryController.php";
 
 include "Controller/AdminController.php";
 include "Controller/AdminClientsController.php";
@@ -18,11 +19,13 @@ include "Model/AdminModel.php";
 include "Model/AdminClientsModel.php";
 // include "Model/AdminStocksModel.php";
 include "Model/AdminProduitsModel.php";
-include "Model/AdminCommandesModel.php";
+include "Model/HistoryModel.php";
+// include "Model/AdminCommandesModel.php";
 
 
 //INCLUSION DES VIEWS
 include "View/MotherView.php";
+include "View/HistoryView.php";
 include "View/ConnectView.php";
 
 include "View/AdminView.php";
