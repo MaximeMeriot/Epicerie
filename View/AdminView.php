@@ -7,9 +7,9 @@ class AdminView {
 
     protected $page;
 //--------------------------------------------------------------------------------------------------------------------------------------
-    public function __construct(){
-        $this->page=$this->searchHtml("html/header.html");
-        $this->page.=$this->searchHtml("html/adminNav.html");
+    function __construct(){
+        $this->page = $this->searchHtml("html/header.html");
+        $this->page .= $this->searchHtml("html/adminNav.html");
     }
 //--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ class AdminView {
     }
 //--------------------------------------------------------------------------------------------------------------------------------------
     protected function display(){
-        $this->page.=$this->searchHTML("html/footer.html");
+        $this->page .= $this->searchHTML("html/footer.html");
         echo $this->page;
   
     }
@@ -27,7 +27,7 @@ class AdminView {
 
     public function displayHome(){
 
-    $this->page.=$this->searchHTML("html/adminAccueil.html");
+    $this->page .= $this->searchHTML("html/adminAccueil.html");
     $this->display();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------

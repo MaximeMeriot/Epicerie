@@ -7,7 +7,7 @@ class ListController extends MotherController
     private $model;
 
 
-    public function __construct()
+    function __construct()
     {
         /*
         * On instancie notre View/Model
@@ -18,9 +18,16 @@ class ListController extends MotherController
 
     public function listAction()
     {
+        
         $list = $this->model->getList('Produit');
         $this->view->DisplayList($list);
-       
+    
+    }
+
+    public function addCompteurAction()
+    {   
+        $this -> model -> addCompteur($_GET['idProduit']);
+        header ('Location: index.php?controller=List&action=list'); 
     }
 
 }

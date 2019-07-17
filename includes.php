@@ -8,8 +8,8 @@ include "Controller/AdminController.php";
 include "Controller/AdminClientsController.php";
 // include "Controller/AdminStocksController.php";
 include "Controller/AdminProduitsController.php";
-include "Controller/AdminCommandesController.php";
-
+// include "Controller/AdminCommandesController.php";
+include "Controller/CartController.php";
 //INCLUSION DES MODELS
 include "Model/MotherModel.php";
 include "Model/ConnectModel.php";
@@ -31,5 +31,7 @@ include "View/AdminClientsView.php";
 include "View/AdminProduitsView.php";
 include "View/AdminCommandesView.php";
 
+//include shopping cart 
+include "View/CartView.php";
 
 include "Dispatcher.php";
