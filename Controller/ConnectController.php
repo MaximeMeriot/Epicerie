@@ -21,10 +21,10 @@ class ConnectController extends MotherController {
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $societe = $_POST['societe'];
-        $email = $_POST['email'];
         $mdp = $_POST['mdp'];
+        $email = $_POST['email'];
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $this->model->addClient($nom, $prenom, $societe, $email, $hash);
+        $this->model->addClient($nom, $prenom, $societe, $hash, $email);
         $this->view->displayRegisterOk();
     }
 
@@ -38,6 +38,8 @@ class ConnectController extends MotherController {
         }
         else {
             $this->view->displayConnexionNok();
+            var_dump($liste['mdp']);
+            var_dump($hash);
         }
 
     }
