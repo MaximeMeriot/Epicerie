@@ -14,6 +14,25 @@ class ListModel extends MotherModel
         }
         return $list;
     }
+
+    function addCompteur($idProduit)
+    {
+        // echo '<pre>Vous etes ici';
+        // var_dump($_SESSION);
+        // var_dump($idProduit);
+
+        $compteur = 'produit' . $idProduit;
+    
+        if (isset($_SESSION["$compteur"])){
+            $_SESSION["$compteur"] ++;
+        
+        } else {
+            $_SESSION["$compteur"] = 1;
+
+        }
+        // echo 'je suis la';
+        // var_dump($_SESSION);
+    }
    
 
 }
