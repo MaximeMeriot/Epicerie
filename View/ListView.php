@@ -38,7 +38,7 @@ class ListView extends MotherView
                 </div><br />';
         }
 
-        $this -> page .= ' </div>';
+        $this->page .= ' </div>';
 
         $this->displayPage();
     }
