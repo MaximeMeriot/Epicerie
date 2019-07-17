@@ -14,16 +14,6 @@ class ConnectModel extends MotherModel {
         $requete->bindParam(':mdp', $mdp);
         $requete->bindParam(':email',$email);
         $resultat = $requete->execute();
-        
-        var_dump($nom);
-        var_dump($prenom);
-        var_dump($societe);
-        var_dump($mdp);
-        var_dump($email);
-
-        var_dump($resultat);
-        var_dump($this->connexion->errorInfo());
-        var_dump($_POST);
     }
 
     public function testLogin($email){
@@ -31,7 +21,6 @@ class ConnectModel extends MotherModel {
         $requete->bindParam(':email', $email);
         $requete->execute();
         $liste = $requete->fetch(PDO::FETCH_ASSOC);
-        var_dump($liste);
         if(isset($liste)) {
             return $liste; // On retourne la liste au point 0 car la liste est sous forme de tableau double -> $liste[0]['nom'];
         }

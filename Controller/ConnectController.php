@@ -31,15 +31,14 @@ class ConnectController extends MotherController {
     public function testLoginAction(){
         $email = $_POST['email'];
         $mdp = $_POST['mdp'];
-        $hash = password_hash($mdp, PASSWORD_DEFAULT);
         $liste = $this->model->testLogin($email);
-        if($liste['mdp'] == $hash){
-            $this->view->displayConnexionOk($liste['prenom']);
+        if (password_verify($mdp, $liste['mdp'])) {
+            $this->view->displayConnexionOk($liste['prenom_client']);
         }
         else {
             $this->view->displayConnexionNok();
             var_dump($liste['mdp']);
-            var_dump($hash);
+            var_dump($mdp);
         }
 
     }
