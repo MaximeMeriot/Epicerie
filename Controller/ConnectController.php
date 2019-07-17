@@ -51,8 +51,6 @@ class ConnectController extends MotherController {
         }
         else {
             $this->view->displayConnexionNok();
-            var_dump($liste['mdp']);
-            var_dump($mdp);
         }
 
     }
