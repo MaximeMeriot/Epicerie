@@ -14,7 +14,7 @@ class ConnectModel extends MotherModel {
         $requete->bindParam(':mdp', $mdp);
         $requete->bindParam(':email',$email);
         $resultat = $requete->execute();
-    }
+}
 
     public function testLogin($email){
         $requete = $this->connexion->prepare('SELECT * FROM client WHERE email= :email');
@@ -25,5 +25,4 @@ class ConnectModel extends MotherModel {
             return $liste; // On retourne la liste au point 0 car la liste est sous forme de tableau double -> $liste[0]['nom'];
         }
     }
-
 }

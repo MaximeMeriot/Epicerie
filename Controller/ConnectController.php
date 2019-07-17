@@ -34,6 +34,9 @@ class ConnectController extends MotherController {
         $liste = $this->model->testLogin($email);
         if (password_verify($mdp, $liste['mdp'])) {
             $this->view->displayConnexionOk($liste['prenom_client']);
+            session_start([
+                'cookie_lifetime' => 3600,
+            ]);
         }
         else {
             $this->view->displayConnexionNok();
