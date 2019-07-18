@@ -31,7 +31,7 @@ class ListView extends MotherView
 
             
             $this->page .= '
-                <div class="card col-md-4 col-sm-6 text-center mx-auto bg-light">
+                <div class="card col-md-4 col-sm-6 text-center mx-auto">
                     <div class="card-body">
                     <h3 class="card-title text-center">'
                 . $element['nom_produit']
@@ -41,9 +41,7 @@ class ListView extends MotherView
                         <p class=" text-center text-dark">'
                 . $element['prix_unitaire'] . '€/kg'
                 . '</p> <br />
-                        <a href="index.php?controller=List&action=cart' . $element['id_produit'] . '" class="btn btn-secondary id="idProduit">Ajouter au panier</a>
-                        <a href="index.php?controller=List&action=addCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-secondary id="idProduit">Compter</a>
-                        <p class="card-text text-center">Quantité produit ajouté :'. $quantite . '  kg</p>
+                <a href="index.php?controller=Cart&action=cart&id=' . $element['id_produit'] . '" class="btn btn-secondary id="idProduit">Ajouter au panier</a>
                         <img class="card-img-top img-fluid py-3" src=" '
                 . $element['photo']
                 . '" alt="' . $element['nom_produit'] . '">
