@@ -28,6 +28,8 @@ include "Model/HistoryModel.php";
 include "Model/AdminCommandesModel.php";
 include "Model/ValidPanierModel.php";
 include "Model/ListModel.php";
+include "Model/CartModel.php";
+
 
 
 
