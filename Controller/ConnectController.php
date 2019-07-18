@@ -10,7 +10,17 @@ class ConnectController extends MotherController {
     }
 
     public function loginAction() {
-        $this->view->displayLogin();
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            if($_SESSION['admin']) {
+                $this->view->displayConnexionOkAdmin($_SESSION['prenom']);
+            }
+            else {
+                $this->view->displayConnexionOkClient($_SESSION['prenom']);
+            }
+        }
+        else {
+            $this->view->displayLogin();
+        }
     }
 
     public function registerAction() {
@@ -45,7 +55,7 @@ class ConnectController extends MotherController {
             else {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
             session_start([
-                'cookie_lifetime' => 3600,
+                'cookie_lifetime' => 42000,
             ]); 
             $_SESSION['admin'] = false;
             }
@@ -63,5 +73,25 @@ class ConnectController extends MotherController {
 
     public function unauthorizedAction(){
         $this->view->displayUnauthorized();
+    }
+
+    public function deconnexionAction() {
+        $_SESSION = array();
+ 
+// Si vous voulez détruire complètement la session, effacez également
+// le cookie de session.
+// Note : cela détruira la session et pas seulement les données de session !
+    if (ini_get("session.use_cookies")) {
+	    $params = session_get_cookie_params();
+	    setcookie(session_name(), '', time() - 42000,
+		    $params["path"], $params["domain"],
+		    $params["secure"], $params["httponly"]
+	);
+}
+ 
+// Finalement, on détruit la session.
+session_destroy();
+var_dump($_SESSION);
+        $this->view->displayLogin();
     }
 }
