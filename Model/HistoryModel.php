@@ -7,12 +7,18 @@ class HistoryModel extends MotherModel{
 //-----------------------------------------------------------------------------------------------------------------------------------   
   public function getList(){
 
+    //SELECT * FROM entete_commande 
+    //INNER JOIN client ON entete_commande.id_client=client.id_client 
+    // WHERE entete_commande.id_client= '2'
     $requete = $this->connexion->prepare("SELECT *
-    FROM entete_commande WHERE id_client= :id_client
-    INNER JOIN client ON entete_commande.id_client=client.id_client");
-    $requete->bindParam(":id_client", $SESSION['id']);
-    $resultat = $requete->execute();
-    $entetes = $requete->fetchAll(PDO::FETCH_ASSOC);
+    FROM entete_commande 
+    INNER JOIN client ON entete_commande.id_client=client.id_client
+    WHERE entete_commande.id_client= :id_client
+    ");
+    $test = 2;
+    $requete->bindParam(":id_client", $test);
+    var_dump( $resultat = $requete->execute());
+    $entetes = $resultat->fetchAll(PDO::FETCH_ASSOC);
     
     $requete = "SELECT *
     FROM detail_commande
