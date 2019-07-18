@@ -31,7 +31,7 @@ class CartModel extends MotherModel
                  $_SESSION["cart"][0] = $_GET["id"];
              }
         }else {
-           $this->page .= "notset get";
+           $this->page .= "cart empty";
         }
        
         // var_dump($mycart);
