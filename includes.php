@@ -11,6 +11,10 @@ include "Controller/AdminClientsController.php";
 include "Controller/AdminProduitsController.php";
 include "Controller/AdminCommandesController.php";
 include "Controller/CartController.php";
+include "Controller/ValidPanierController.php";
+include "Controller/ListController.php";
+
+
 
 //INCLUSION DES MODELS
 include "Model/MotherModel.php";
@@ -22,6 +26,9 @@ include "Model/AdminClientsModel.php";
 include "Model/AdminProduitsModel.php";
 include "Model/HistoryModel.php";
 include "Model/AdminCommandesModel.php";
+include "Model/ValidPanierModel.php";
+include "Model/ListModel.php";
+
 
 
 //INCLUSION DES VIEWS
@@ -34,6 +41,10 @@ include "View/AdminClientsView.php";
 // include "View/AdminStocksView.php";
 include "View/AdminProduitsView.php";
 include "View/AdminCommandesView.php";
+include "View/ListView.php";
+include "View/ValidPanierView.php";
+
+
 
 //include shopping cart 
 include "View/CartView.php";
