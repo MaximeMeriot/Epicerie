@@ -43,3 +43,7 @@ p{
 #connexion.margin-bottom {
     margin-bottom : 4rem;
 }
+
+.listeCommandes tbody, .thead-light{
+    display:none;
+}
