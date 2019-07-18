@@ -4,20 +4,20 @@ class CartView extends MotherView
 
 //-----------------------------------------------------------------------------------------------------------------------------------
 
-    public function displayCart($img,$name,$description,$price,$prod_id){
-
+    public function displayCart($img,$name,$price,$prod_id){
+        
         $this->page .= "
            <div class='border rounded my-1'>
                     <div class='row'>
                         <div class='col-md-3'>
-                            <img src='images/shop/$img' alt=' class='img-fluid'>
+                            <img src='$img' alt='' class='img-fluid'>
                         </div>
                         <div class='col-md-6 pb-2'>
                             <h5 class='pt-2'>$name</h5>
                             <small>seller:Epicerie fine</small>
                             <h5 class='pt-2'>$".$price."</h5>
-                            <button type='submit' class='btn btn-dark'>Save for later</button>
-                            <a href='cart.php?action=remove&id=$prod_id'><button type='submit' class='btn mx-2' name='remove' class='remove-cart'>Remove</button> </a>
+                            
+                            <a href='index.php?mode=remove&controller=Cart&action=cart&id=$prod_id'><button type='submit' class='btn mx-2' name='remove' class='remove-cart'>Remove</button> </a>
                         </div>
                         <div class='col-md-3 py-5'>
                             <div>
@@ -27,16 +27,21 @@ class CartView extends MotherView
                             </div>
                         </div>
                     </div>
-                    <input type='hidden' value='$stock'>
-                </div>  
+                    </div>  
+                   
                 <script src='js/script.js'></script>
         ";
+       
     }
-    public function displayAllCart(){
-        foreach ($sessions as $session) {
-            displayCart($img,$name,$description,$price,$prod_id);
-            $this->display();
-        
+    public function displayData($carts){
+
+        foreach ($carts as $cart) {           
+
+            $this->displayCart($cart["photo"],$cart["nom_produit"],$cart["prix_unitaire"]
+            ,$cart["id_produit"]);
+             
         }
+        
+        $this->display();        
     }
 }
