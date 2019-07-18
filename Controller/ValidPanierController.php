@@ -1,13 +1,5 @@
 <?php
 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-
-// require 'PHPMailer-master/src/PHPMailer.php';
-// require 'PHPMailer-master/src/SMTP.php';
-// require 'PHPMailer-master/src/Exception.php';
-
 class ValidPanierController extends MotherController
 {
     private $view;
@@ -26,7 +18,7 @@ class ValidPanierController extends MotherController
     public function validPanierAction()
     {
         $this->view->displayValid();
-        $this->view->sendMail();
+        $this->model->sendMail();
     }
 
 }
