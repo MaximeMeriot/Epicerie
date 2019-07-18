@@ -37,6 +37,14 @@ public function displayList($list){
     
     foreach($list as $key=>$value){
 
+
+        $totalCommande=0;
+        foreach($value['items'] as $i=>$element){
+
+            $totalCommande=($element["prix_unitaire"]*$element["qte_prdt_commande"])+$totalCommande;
+
+        }
+
         $table.='
         <div class="row my-5 table-responsive">
         <table class="table my-5">
@@ -46,7 +54,7 @@ public function displayList($list){
                 <th scope="col">Client: '.$value["entete"]["nom_client"]." ".$value["entete"]["prenom_client"].'</th>
                 <th scope="col">Société: '.$value["entete"]["societe"].'</th> 
                 <th scope="col">'.$value["entete"]["date_commande"].'</th>
-                <th scope="col"></th>
+                <th scope="col">Total TTC: '.$totalCommande.'€</th>
 
               </tr>
             </thead>

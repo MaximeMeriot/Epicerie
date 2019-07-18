@@ -11,6 +11,7 @@ include "Controller/AdminClientsController.php";
 include "Controller/AdminProduitsController.php";
 include "Controller/AdminCommandesController.php";
 include "Controller/CartController.php";
+
 //INCLUSION DES MODELS
 include "Model/MotherModel.php";
 include "Model/ConnectModel.php";
