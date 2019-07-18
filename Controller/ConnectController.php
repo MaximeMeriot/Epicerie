@@ -65,6 +65,7 @@ class ConnectController extends MotherController {
             $_SESSION['nom'] = $liste['nom_client'];
             $_SESSION['prenom'] = $liste['prenom_client'];
             $_SESSION['societe'] = $liste['societe'];
+            $_SESSION['id'] = $liste['id_client'];
             var_dump($_SESSION);
         }
         else {

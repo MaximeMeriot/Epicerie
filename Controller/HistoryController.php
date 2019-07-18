@@ -9,4 +9,10 @@ class HistoryController extends MotherController {
         $this->view= new HistoryView();
     }
 
+    public function listAction(){
+        $this->view->displayList($this->model->getList());
+
+    }
+
 }
+
