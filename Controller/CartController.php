@@ -3,7 +3,7 @@
 class CartController extends MotherController 
 {
     private $view;
-    // private $model;
+    private $model;
 
 
     function __construct()
@@ -12,10 +12,13 @@ class CartController extends MotherController
         * On instancie notre View/Model
         */
         $this->view = new CartView();
-        // $this->model = new ListModel();
+        $this->model = new CartModel();
     }
     public function cartAction()
     {
-        $this->view->displayCart("","name","lorem",20,1);
+        // header ('Location: index.php?controller=List&action=list'); 
+       $cart = $this->model->panier();
+        $this->view->displayData($cart);
     }
+
 }
