@@ -15,7 +15,7 @@ class ConnectView extends MotherView{
     }
 
     public function displayRegisterOk(){
-        $this->page .= "Bien joué ! Il ne vous reste plus qu'à vous <a href='http://localhost/epicerie/index.php?controller=connect&action=login'>connecter</a>";
+        $this->page .= "Bien joué ! Il ne vous reste plus qu'à vous <a href='index.php?controller=connect&action=login'>connecter</a>";
         $this->display();
     }
 
