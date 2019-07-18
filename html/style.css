@@ -44,6 +44,6 @@ p{
     margin-bottom : 4rem;
 }
 
-.listeCommandes tbody{
+.listeCommandes tbody, .thead-light{
     display:none;
 }
