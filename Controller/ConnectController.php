@@ -40,6 +40,7 @@ class ConnectController extends MotherController {
                     'cookie_lifetime' => 3600,
                 ]); 
                 $_SESSION['admin'] = true;
+                
             }
             else {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
@@ -48,6 +49,11 @@ class ConnectController extends MotherController {
             ]); 
             $_SESSION['admin'] = false;
             }
+            $_SESSION['email'] = $liste['email'];
+            $_SESSION['nom'] = $liste['nom_client'];
+            $_SESSION['prenom'] = $liste['prenom_client'];
+            $_SESSION['societe'] = $liste['societe'];
+            var_dump($_SESSION);
         }
         else {
             $this->view->displayConnexionNok();
