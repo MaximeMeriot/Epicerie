@@ -10,7 +10,17 @@ class ConnectController extends MotherController {
     }
 
     public function loginAction() {
-        $this->view->displayLogin();
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            if($_SESSION['admin']) {
+                $this->view->displayConnexionOkAdmin($_SESSION['prenom']);
+            }
+            else {
+                $this->view->displayConnexionOkClient($_SESSION['prenom']);
+            }
+        }
+        else {
+            $this->view->displayLogin();
+        }
     }
 
     public function registerAction() {
@@ -40,14 +50,22 @@ class ConnectController extends MotherController {
                     'cookie_lifetime' => 3600,
                 ]); 
                 $_SESSION['admin'] = true;
+                
             }
             else {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
+            if(!isset($_SESSION)) {
             session_start([
-                'cookie_lifetime' => 3600,
+                'cookie_lifetime' => 42000,
             ]); 
+            }
             $_SESSION['admin'] = false;
             }
+            $_SESSION['email'] = $liste['email'];
+            $_SESSION['nom'] = $liste['nom_client'];
+            $_SESSION['prenom'] = $liste['prenom_client'];
+            $_SESSION['societe'] = $liste['societe'];
+            var_dump($_SESSION);
         }
         else {
             $this->view->displayConnexionNok();
@@ -57,5 +75,25 @@ class ConnectController extends MotherController {
 
     public function unauthorizedAction(){
         $this->view->displayUnauthorized();
+    }
+
+    public function deconnexionAction() {
+        $_SESSION = array();
+ 
+// Si vous voulez détruire complètement la session, effacez également
+// le cookie de session.
+// Note : cela détruira la session et pas seulement les données de session !
+    if (ini_get("session.use_cookies")) {
+	    $params = session_get_cookie_params();
+	    setcookie(session_name(), '', time() - 42000,
+		    $params["path"], $params["domain"],
+		    $params["secure"], $params["httponly"]
+	);
+}
+ 
+// Finalement, on détruit la session.
+session_destroy();
+var_dump($_SESSION);
+        $this->view->displayLogin();
     }
 }
