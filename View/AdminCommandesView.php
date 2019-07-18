@@ -46,8 +46,8 @@ public function displayList($list){
         }
 
         $table.='
-        <div class="row my-5 table-responsive">
-        <table class="table my-5">
+        <div class="row table-responsive listeCommandes">
+        <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Commande n°: '.$value["entete"]["num_commande"].'</th>
@@ -89,16 +89,16 @@ public function displayList($list){
 
         }
 
-
+        $table.='                       
+        </tbody>
+        </table>
+        </div>';
 
     }
 
 
 
-    $table.='                       
-        </tbody>
-        </table>
-        </div>';
+
 
     $this->page.=$table;
     $this->display();

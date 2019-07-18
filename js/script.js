@@ -21,5 +21,11 @@ $(document).ready(function () {
           }
         console.log( $(".qty").val(qty));
     });
+
+
+
     
 });
+
+
+
