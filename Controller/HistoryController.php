@@ -10,7 +10,15 @@ class HistoryController extends MotherController {
     }
 
     public function listAction(){
-        $this->view->displayList($this->model->getList());
+        $getList = $this->model->getList();
+        if(!($getList == 0)) {
+
+        
+        $this->view->displayList($getList);
+    }
+    else {
+        $this->view->noDisplayList();
+    }
 
     }
 

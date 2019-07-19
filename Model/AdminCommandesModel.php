@@ -23,7 +23,7 @@ class AdminCommandesModel extends MotherModel{
     FROM detail_commande
     INNER JOIN produit ON detail_commande.id_produit=produit.id_produit";
     $resultat = $this->connexion->query($requete);
-    $items = $resultat->fetchAll(PDO::FETCH_ASSOC);
+    $items = $resultat->fetchAll(PDO::FETCH_ASSOC); 
 
 
     return $this->buildTabCommandes($entetes,$items);

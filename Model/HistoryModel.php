@@ -15,19 +15,26 @@ class HistoryModel extends MotherModel{
     INNER JOIN client ON entete_commande.id_client=client.id_client
     WHERE entete_commande.id_client= :id_client
     ");
-    $test = 2;
-    $requete->bindParam(":id_client", $test);
-    var_dump( $resultat = $requete->execute());
-    $entetes = $resultat->fetchAll(PDO::FETCH_ASSOC);
+    $requete->bindParam(':id_client', $_SESSION['id']);
+    $entetes = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+    if(isset($entetes[0])) {
+        $numCommande = $entetes[0]['num_commande'];
+    }
     
     $requete = "SELECT *
     FROM detail_commande
-    INNER JOIN produit ON detail_commande.id_produit=produit.id_produit";
+    INNER JOIN produit ON detail_commande.id_produit=produit.id_produit
+    -- WHERE num_commande = :numCommande
+    ";
     $resultat = $this->connexion->query($requete);
     $items = $resultat->fetchAll(PDO::FETCH_ASSOC);
-
-
-    return $this->buildTabCommandes($entetes,$items);
+    if(isset($entetes[0]['num_commande'])) {
+        return $this->buildTabCommandes($entetes,$items);
+    }
+    else {
+        return 0;
+    }
 
 }
 //-----------------------------------------------------------------------------------------------------------------------------------   

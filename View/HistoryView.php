@@ -33,20 +33,28 @@ class HistoryView extends MotherView {
 public function displayList($list){
 
 
-    $table= "<h5 class='my-5'> Base de données - Commandes -</h5>";
+    $table= "<h5 class='my-5'><u>Commandes :</u></h5>";
     
     foreach($list as $key=>$value){
 
+
+        $totalCommande=0;
+        foreach($value['items'] as $i=>$element){
+
+            $totalCommande=($element["prix_unitaire"]*$element["qte_prdt_commande"])+$totalCommande;
+
+        }
+
         $table.='
-        <div class="row my-5 table-responsive">
-        <table class="table my-5">
+        <div class="row table-responsive listeCommandes">
+        <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Commande n°: '.$value["entete"]["num_commande"].'</th>
                 <th scope="col">Client: '.$value["entete"]["nom_client"]." ".$value["entete"]["prenom_client"].'</th>
                 <th scope="col">Société: '.$value["entete"]["societe"].'</th> 
                 <th scope="col">'.$value["entete"]["date_commande"].'</th>
-                <th scope="col"></th>
+                <th scope="col">Total TTC: '.$totalCommande.'€</th>
 
               </tr>
             </thead>
@@ -81,20 +89,25 @@ public function displayList($list){
 
         }
 
-
+        $table.='                       
+        </tbody>
+        </table>
+        </div>';
 
     }
 
 
 
-    $table.='                       
-        </tbody>
-        </table>
-        </div>';
+
 
     $this->page.=$table;
     $this->display();
 
+}
+// --------------------------------------------------------------------------
+public function noDisplayList() {
+    $this->page .= "<h4 class='text-center'>Vous n'avez aucune commande en cours !</h4>";
+    $this->display();
 }
 
 
