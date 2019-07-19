@@ -5,8 +5,8 @@ function deroulTxt(){
     $("tbody",this).slideToggle(1);
     $(".thead-light",this).slideToggle(1);
 
-    $("tbody").not($("tbody",this)).slideUp();
-    $(".thead-light").not($(".thead-light",this)).slideUp();
+    // $("tbody").not($("tbody",this)).slideUp();
+    // $(".thead-light").not($(".thead-light",this)).slideUp();
 }
 //--------------------------------------------------------------------------------------
 $(".listeCommandes").click(deroulTxt);

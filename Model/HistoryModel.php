@@ -16,6 +16,7 @@ class HistoryModel extends MotherModel{
     WHERE entete_commande.id_client= :id_client
     ");
     $requete->bindParam(':id_client', $_SESSION['id']);
+    $resultat = $requete->execute();
     $entetes = $requete->fetchAll(PDO::FETCH_ASSOC);
 
     if(isset($entetes[0])) {

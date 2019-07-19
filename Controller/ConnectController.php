@@ -66,7 +66,6 @@ class ConnectController extends MotherController {
             $_SESSION['prenom'] = $liste['prenom_client'];
             $_SESSION['societe'] = $liste['societe'];
             $_SESSION['id'] = $liste['id_client'];
-            var_dump($_SESSION);
         }
         else {
             $this->view->displayConnexionNok();
