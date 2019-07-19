@@ -47,7 +47,7 @@ class CartView extends MotherView
        
         if (!empty($carts)) {
             foreach ($carts as $cart) {           
-              echo var_dump($cart) ."|";
+//               echo var_dump($cart) ."|";
               if ($cart ) {
                 $this->displayCart($cart["photo"],$cart["nom_produit"],$cart["prix_unitaire"]
                 ,$cart["id_produit"],$cart["qte_stock"]);
