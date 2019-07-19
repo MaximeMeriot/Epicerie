@@ -56,7 +56,7 @@ class ConnectController extends MotherController {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
             if(!isset($_SESSION)) {
             session_start([
-                'cookie_lifetime' => 42000,
+                'cookie_lifetime' => 3600,
             ]); 
             }
             $_SESSION['admin'] = false;
@@ -79,20 +79,23 @@ class ConnectController extends MotherController {
 
     public function deconnexionAction() {
         $_SESSION = array();
- 
+       
 // Si vous voulez détruire complètement la session, effacez également
 // le cookie de session.
 // Note : cela détruira la session et pas seulement les données de session !
     if (ini_get("session.use_cookies")) {
 	    $params = session_get_cookie_params();
-	    setcookie(session_name(), '', time() - 42000,
+	    setcookie(session_name(), '', time() - 3600,
 		    $params["path"], $params["domain"],
 		    $params["secure"], $params["httponly"]
 	);
 }
  
-// Finalement, on détruit la session.
+// Finalement, on détruit la session. 
+session_unset();
 session_destroy();
-        $this->view->displayLogin();
+
+$this->view->displayLogin();
+        // $this->view->displayLogout();
     }
 }
