@@ -20,8 +20,7 @@ class ConnectView extends MotherView{
     }
 
     public function displayConnexionOkClient($prenom){
-        $this->page .= "Bonjour " .$prenom. ", vous êtes bien connecté.";
-        $this->display();
+        header('Location: index.php?controller=List&action=list');
     }
 
     public function displayConnexionOkAdmin($prenom){
@@ -36,7 +35,7 @@ class ConnectView extends MotherView{
     }
 
     public function displayUnauthorized() {
-        $this->page .= "Vous n'êtes pas authorisé à accéder à ce contenu sale fdp. Redirigez-vous vers <a href='index.php'>votre interface</a>";
+        $this->page .= "Vous n'êtes pas authorisé à accéder à ce contenu sale ***. Redirigez-vous vers <a href='index.php'>votre interface</a>";
         $this->display();
     }
 

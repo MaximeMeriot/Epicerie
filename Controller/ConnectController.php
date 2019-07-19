@@ -93,7 +93,6 @@ class ConnectController extends MotherController {
  
 // Finalement, on détruit la session.
 session_destroy();
-var_dump($_SESSION);
         $this->view->displayLogin();
     }
 }
