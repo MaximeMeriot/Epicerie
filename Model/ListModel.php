@@ -3,7 +3,7 @@
 class ListModel extends MotherModel
 {
 
-    function getList()
+    public function getList()
     {
         $requete = "SELECT * FROM Produit";
         $result = $this -> connexion -> query($requete);
@@ -15,7 +15,7 @@ class ListModel extends MotherModel
         return $list;
     }
 
-    function addCompteur($idProduit)
+    public function addCompteur($idProduit)
     {
         // echo '<pre>Vous etes ici';
         // var_dump($_SESSION);
