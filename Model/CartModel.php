@@ -24,7 +24,7 @@ class CartModel extends MotherModel
                    
                  }
                  
-                 if (!empty($_SESSION["cart"])) {
+                
                     foreach ($_SESSION["cart"] as $id) {
                         //
                         $mycart[] = $this->getCart($id);
@@ -42,7 +42,7 @@ class CartModel extends MotherModel
                              
                         // }
                     }
-                 }
+               
                   
                 
              }else {
