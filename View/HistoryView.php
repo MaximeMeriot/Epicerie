@@ -5,10 +5,7 @@ class HistoryView extends MotherView {
 
     protected $page;
 //--------------------------------------------------------------------------------------------------------------------------------------
-    public function __construct(){
-        $this->page=$this->searchHtml("html/header.html");
-        $this->page.=$this->searchHtml("html/nav.html");
-    }
+    
 //--------------------------------------------------------------------------------------------------------------------------------------
 
     protected function searchHtml($page){
