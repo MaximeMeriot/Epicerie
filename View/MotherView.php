@@ -12,6 +12,9 @@ abstract class MotherView{
         if(isset($_SESSION['nom'])&&isset($_SESSION['prenom'])&&isset($_SESSION['societe'])){
 
             $this->page = str_replace("{{utilisateur}}",$_SESSION['nom'].' '.$_SESSION['prenom'].' de la société '.$_SESSION['societe'],$this->page);
+        }else{
+            $this->page = str_replace("{{utilisateur}}","Anomyme",$this->page);
+
         }
 
     }
