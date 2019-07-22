@@ -36,6 +36,8 @@ public function buildTabCommandes($entetes,$items){
         $tabCommandes[n]    ->[en_tete]->   infos en tete
                             ->[items]->     [n]->   infos items
     */
+
+
     foreach($entetes as $key => $value){
         $tabCommandes[$key]['entete']=$value;
 
@@ -46,6 +48,7 @@ public function buildTabCommandes($entetes,$items){
             }    
         }    
     }
+
 
     return $tabCommandes;
 }

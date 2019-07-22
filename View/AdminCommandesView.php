@@ -37,14 +37,15 @@ public function displayList($list){
     
     foreach($list as $key=>$value){
 
-
         $totalCommande=0;
-        foreach($value['items'] as $i=>$element){
+        if(isset($value['items'])){
+            
+            foreach($value['items'] as $i=>$element){
 
-            $totalCommande=($element["prix_unitaire"]*$element["qte_prdt_commande"])+$totalCommande;
+                $totalCommande=($element["prix_unitaire"]*$element["qte_prdt_commande"])+$totalCommande;
 
-        }
-
+            }
+        }    
         $table.='
         <div class="row table-responsive listeCommandes">
         <table class="table">
@@ -72,21 +73,21 @@ public function displayList($list){
                    
         ';
 
-        
-        foreach($value['items'] as $i=>$element){
+        if(isset($value['items'])){
+            foreach($value['items'] as $i=>$element){
 
-            $table.='
-            <tr>        
-                <td>'.($i+1).'</td>
-                <td>'.$element["nom_produit"].'</td>
-                <td>'.$element["qte_prdt_commande"].'</td>
-                <td>'.$element["prix_unitaire"].'</img></td>
-                <td>'.($element["prix_unitaire"]*$element["qte_prdt_commande"]).'</td>
-               
-    
-            <tr>';
-    
+                $table.='
+                <tr>        
+                    <td>'.($i+1).'</td>
+                    <td>'.$element["nom_produit"].'</td>
+                    <td>'.$element["qte_prdt_commande"].'</td>
+                    <td>'.$element["prix_unitaire"].'</img></td>
+                    <td>'.($element["prix_unitaire"]*$element["qte_prdt_commande"]).'</td>
 
+            
+                <tr>';        
+
+            }
         }
 
         $table.='                       
