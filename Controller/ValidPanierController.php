@@ -19,6 +19,8 @@ class ValidPanierController extends MotherController
     {
         $this->view->displayValid();
         $this->model->sendMail();
+
+        $this->model->validCommande($_SESSION['cart'], $_SESSION['id']);
     }
 
 }
