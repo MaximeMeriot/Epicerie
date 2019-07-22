@@ -78,6 +78,13 @@ class ConnectController extends MotherController {
     }
 
     public function deconnexionAction() {
+        
+$this->view->displayLogin();
+        // $this->view->displayLogout();
+    }
+
+    public function redirectDeconnexionAction(){
+
         $_SESSION = array();
        
 // Si vous voulez détruire complètement la session, effacez également
@@ -90,12 +97,11 @@ class ConnectController extends MotherController {
 		    $params["secure"], $params["httponly"]
 	);
 }
- 
-// Finalement, on détruit la session. 
-session_unset();
-session_destroy();
 
-$this->view->displayLogin();
-        // $this->view->displayLogout();
+// Finalement, on détruit la session. 
+session_destroy();
+session_unset();
+
+        header('Location: index.php?controller=Connect&action=deconnexion');
     }
 }

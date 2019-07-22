@@ -22,6 +22,7 @@ class CartModel extends MotherModel
             }              
         
         }
+        var_dump($_SESSION["cart"]);
         return $mycart;
             
     }
@@ -37,4 +38,6 @@ class CartModel extends MotherModel
         return $list;
         
     }
+
+    
 }
