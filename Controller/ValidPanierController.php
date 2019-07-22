@@ -19,6 +19,14 @@ class ValidPanierController extends MotherController
     {
         $this->view->displayValid();
         $this->model->sendMail();
+
+        $id=array('2','3');
+        $qte=array('10','5');
+        $panier=array(
+            "id"=> $id,"qte"=>$qte
+        );
+
+        $this->model->validCommande($panier, $_SESSION['id']);
     }
 
 }
