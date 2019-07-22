@@ -1,11 +1,8 @@
 <?php
-
 class CartController extends MotherController 
 {
     private $view;
     private $model;
-
-
     function __construct()
     {
         /*
@@ -16,9 +13,8 @@ class CartController extends MotherController
     }
     public function cartAction()
     {
-        // header ('Location: index.php?controller=List&action=list'); 
+       
        $cart = $this->model->panier();
         $this->view->displayData($cart);
     }
-
 }

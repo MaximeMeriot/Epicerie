@@ -1,7 +1,6 @@
 <?php
 class CartView extends MotherView 
 {
-
 //-----------------------------------------------------------------------------------------------------------------------------------
     // function __construct()
     // {
@@ -16,7 +15,7 @@ class CartView extends MotherView
     public function displayCart($img,$name,$price,$prod_id,$stock){
         
         $this->page .= "
-           <div class='border rounded my-1'>
+           <div class='border rounded my-1 cart'>
                     <div class='row'>
                         <div class='col-md-3'>
                             <img src='$img' alt='' class='img-fluid'>
@@ -30,25 +29,27 @@ class CartView extends MotherView
                         </div>
                         <div class='col-md-3 py-5'>
                             <div>
-                                <button type='button ' class='btn less'><i class='fas fa-minus'></i></button>
-                                <input type='text' value='1' class='form-control w-25 d-inline qty'>
-                                <button type='button' class='btn more'><i class='fas fa-plus'></i></button>
+                                <select  class='form-control w-25 d-inline qty'></select>
+                                <span  class='more'></span>
+                                <span  class='subtotal'></span>
+                                <input type='hidden'id='stock' value='$stock'>
                             </div>
                         </div>
-                        <input type='hidden'id='stock' value='$stock'>
                     </div>
                     </div>  
                    
                 <script src='js/script.js'></script>  
         ";
+
+        
       
     }
     public function displayData($carts){
        
         if (!empty($carts)) {
             foreach ($carts as $cart) {           
-            //   echo var_dump($cart) ."|";
-              if ($cart ) {
+           
+              if ($cart) {
                 $this->displayCart($cart["photo"],$cart["nom_produit"],$cart["prix_unitaire"]
                 ,$cart["id_produit"],$cart["qte_stock"]);
                  
@@ -58,12 +59,15 @@ class CartView extends MotherView
         }else {
             $this->page .= "cart  is empty!";
         }
-        // $this->page.= "
-        // </div>
-        // </div>
-        // </div>
-        // </div>";
+       
+        $this->page .=' <div class= “col-12 mx-auto text-center py-3”><a href= "index.php?controller=ValidPanier&action=ValidPanier" class=“btn btn-success text-center” id=“idProduit”>Valider la commande</a>
+       </div>';
         
         $this->display();        
     }
+
+    
 }
+
+
+

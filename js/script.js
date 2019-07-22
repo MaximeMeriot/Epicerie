@@ -1,31 +1,33 @@
 $(document).ready(function () {
     // console.log("hefkjf");
+
+     
+     var input = $(".qty");
     
-    var qty = $(".qty").val();
-    // console.log(qty);
+     
+     var count 
+    input.on("click", function (e) {
+        $("select option").remove();
+        var idx = input.index(this);      
     
-    var phpQty = 10;
-    $(".less").on("click", function () {
-        // console.log("less");
-        
-        if (qty > 1) {
-            qty--;
-        }
-        console.log( $(".qty").val(qty));
+     var stock = $("input:hidden:eq("+idx+")").val()
+     console.log(stock);
+     console.log(e);
+
+     for (var i = 0; i < stock; i++) {
+         count = i + 1
+         $("select").append("<option value="+count+">"+count+"</option>");         
+     }
+    
     });
     
-    $(".more").on("click", function () {
-        // console.log("more");
-          if (qty < phpQty) {
-              qty++;
-          }
-        console.log( $(".qty").val(qty));
+    input.on("change", function (e) {
+        var idx = input.index(this);      
+    
+        var qty = $(this).val();
+         console.log($(this).val())
+         $("span.more:eq("+idx+")").text(qty)
+  
     });
-
-
-
     
 });
-
-
-
