@@ -98,6 +98,41 @@ class ValidPanierModel extends MotherModel
 //------------------------------------------------------------------------------------------------------------------------
        
            
+public function checkCart() {
+        foreach($_SESSION['cart'] as $element){
+            $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
+        
+            $requete->bindParam(':id_produit', $element);
+            // $resultat = $this->connexion->query($requete);
+            $requete->execute();
+            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+ 
+            if ($resultat['qte_stock']<1) {
+                return false;
+            }
+
+            echo '<pre>';
+            var_dump($resultat);
+
+        }
+        foreach($_SESSION['cart'] as $element){
+            $this ->updateStock($element, 1);
+        }
+        return true;
+    }
+
+   
+     public function updateStock($id_produit, $qty)
+     {
+         $requete = $this->connexion->prepare("UPDATE produit SET qte_stock = qte_stock-:qty WHERE id_produit = :id_produit");
+        
+         $requete->bindParam(':id_produit', $id_produit);
+         $requete->bindParam(':qty', $qty);
+
+         $resultat = $requete->execute();
+
+         return $resultat;
+     } 
 
 
 
