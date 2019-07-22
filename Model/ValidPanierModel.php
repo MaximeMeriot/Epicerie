@@ -97,7 +97,7 @@ class ValidPanierModel extends MotherModel
     }
 //------------------------------------------------------------------------------------------------------------------------
        
-           
+// Gestion du stock           
 public function checkCart() {
         foreach($_SESSION['cart'] as $element){
             $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
@@ -111,8 +111,8 @@ public function checkCart() {
                 return false;
             }
 
-            echo '<pre>';
-            var_dump($resultat);
+//             echo '<pre>';
+//             var_dump($resultat);
 
         }
         foreach($_SESSION['cart'] as $element){
