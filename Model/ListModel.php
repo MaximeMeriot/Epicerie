@@ -27,6 +27,17 @@ class ListModel extends MotherModel
         }
       
     }
+
+    public function removeCompteur($idProduit)
+    {
+
+        $compteur = 'produit' . $idProduit;
+    
+        if (isset($_SESSION["$compteur"])){
+            $_SESSION["$compteur"] --;
+        }
+      
+    }
    
 
 }
