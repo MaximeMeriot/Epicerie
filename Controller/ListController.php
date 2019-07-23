@@ -11,13 +11,18 @@ class ListController extends MotherController
         $this->view = new ListView();
         $this->model = new ListModel();
     }
+
     public function listAction()
     {
-        
-        $list = $this->model->getList('Produit');
-         $this->model->panierlist();
+        $list = $this->model->getList();
         $this->view->DisplayList($list);
     
+    }
+
+    public function addCompteurAction()
+    {   
+        $this -> model -> addCompteur($_GET['idProduit']);
+        header ('Location: index.php?controller=List&action=list'); 
     }
    
 }
