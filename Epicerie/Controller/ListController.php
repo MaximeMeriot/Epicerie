@@ -19,7 +19,7 @@ class ListController extends MotherController
     public function listAction()
     {
         
-        $list = $this->model->getList('Produit');
+        $list = $this->model->getList();
          $this->model->panierlist();
         $this->view->DisplayList($list);
     

@@ -5,10 +5,9 @@ class ListModel extends MotherModel
 
     function getList()
     {
-        $requete = "SELECT * FROM Produit";
+        $requete = "SELECT * FROM produit";
         $pre = $this ->connexion -> prepare($requete);
         $pre->execute();
-        $list = array();
         $list = $pre-> fetchAll(PDO::FETCH_ASSOC);
         
         return $list;
@@ -18,7 +17,7 @@ class ListModel extends MotherModel
     {
        
         // session_destroy();
-        if ($_GET["id"]) {
+        if (isset($_GET["id"])) {
             # code...
             if (isset($_SESSION["cart"])) {
                 
