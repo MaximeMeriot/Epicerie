@@ -20,10 +20,11 @@ class ListView extends MotherView
             
         public function displayList($list)
     {
+        $this->page .= '<div class="row col-12 mx-auto justify-content-center">
+        <a class="btn btn-info my-3 btn-block btn-lg"><h2><i class="fas fa-clipboard-list"></i> Liste des produits</h2></a>
+        </div>';
 
-        $this->page .= '<h2 class = "text-center">Liste des produits disponibles </h2> ';
-
-        $this->page .= '<div class="row container mx-auto text-center col-12" id="liste">';
+        $this->page .= '<div class="row container mx-auto mb-4 text-center col-12" id="liste">';
 
 
         foreach ($list as $element) {

@@ -7,13 +7,13 @@ class CartView extends MotherView
        
 
         $table = '
-    <div class="row justify-content-center">
-    <a class="btn btn-info my-5 mx-2 btn-block btn-lg"><h2>Panier</h2></a>
+    <div class="row col-12 justify-content-center">
+    <a class="btn btn-info my-5 mx-2 btn-block btn-lg"><h2><i class="fas fa-shopping-cart"></i> Panier</h2></a>
     </div>';
 
         $table .= '
-    <div class="row my-5 table-responsive">
-    <table class="table my-5 text-center">
+    <div class="row col-12 table-responsive">
+    <table class="table  text-center">
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -40,6 +40,7 @@ class CartView extends MotherView
 
                 $quantite = $_SESSION['produit'.$value['id_produit']];
                 $total = $value['prix_unitaire'] * $quantite;
+
 
                 $table .= '
         <tr>        
