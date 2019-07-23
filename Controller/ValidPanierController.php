@@ -17,10 +17,14 @@ class ValidPanierController extends MotherController
 
     public function validPanierAction()
     {
-        $this->view->displayValid();
-        $this->model->sendMail();
-
-        $this->model->validCommande($_SESSION['cart'], $_SESSION['id']);
+        if ($this->model->checkCart()) {
+            $this->view->displayValid();
+            $this->model->sendMail();
+        }
+         else {
+            $this->view->displayError();
+        }
     }
+
 
 }
