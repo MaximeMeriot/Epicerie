@@ -1,73 +1,67 @@
 <?php
-class CartView extends MotherView 
+class CartView extends MotherView
 {
-//-----------------------------------------------------------------------------------------------------------------------------------
-    // function __construct()
-    // {
-    //     // $this->page.= "
-    //     //     <div class='container-fluid'>
-    //     //     <div class='row px-5'>
-    //     //     <div class='col-md-7'>
-    //     //     <div class='shopping-cart'>
-    //     //     <h6>Mon panier</h6>
-    //     //     <hr>";
-    // }
-    public function displayCart($img,$name,$price,$prod_id,$stock){
-        
-        $this->page .= "
-           <div class='border rounded my-1 cart'>
-                    <div class='row'>
-                        <div class='col-md-3'>
-                            <img src='$img' alt='' class='img-fluid'>
-                        </div>
-                        <div class='col-md-6 pb-2'>
-                            <h5 class='pt-2'>$name</h5>
-                            <small>seller:Epicerie fine</small>
-                            <h5 class='pt-2'>$".$price."</h5>
-                            
-                            <a href='index.php?mode=remove&controller=Cart&action=cart&id=$prod_id'><button type='submit' class='btn mx-2' name='remove' class='remove-cart'>Remove</button> </a>
-                        </div>
-                        <div class='col-md-3 py-5'>
-                            <div>
-                                <select  class='form-control w-25 d-inline qty'></select>
-                                <span  class='more'></span>
-                                <span  class='subtotal'></span>
-                                <input type='hidden'id='stock' value='$stock'>
-                            </div>
-                        </div>
-                    </div>
-                    </div>  
-                   
-                <script src='js/script.js'></script>  
-        ";
 
-        
-      
-    }
-    public function displayData($carts){
+    public function displayPanier($list)
+    {
        
-        if (!empty($carts)) {
-            foreach ($carts as $cart) {           
+
+        $table = '
+    <div class="row justify-content-center">
+    <a class="btn btn-info my-5 mx-2 btn-block btn-lg"><h2>Panier</h2></a>
+    </div>';
+
+        $table .= '
+    <div class="row my-5 table-responsive">
+    <table class="table my-5 text-center">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix unitaire</th> 
+            <th scope="col">Quantité</th> 
            
-              if ($cart) {
-                $this->displayCart($cart["photo"],$cart["nom_produit"],$cart["prix_unitaire"]
-                ,$cart["id_produit"],$cart["qte_stock"]);
-                 
-              }
-             
-            }
-        }else {
-            $this->page .= "cart  is empty!";
+            <th scope="col">Total</th>     
+            <th scope="col"></th>     
+          </tr>
+        </thead>
+        <tbody>                        
+    ';
+
+        foreach ($list as $value) {
+            // var_dump(strpos($key, 'produit'));
+
+            // if (strpos($key, 'produit') !== false) {
+                // var_dump($value);
+
+                // $id = substr($key, 7);
+                // var_dump($key);
+                // echo ' ';
+
+                $quantite = $_SESSION['produit'.$value['id_produit']];
+                $total = $value['prix_unitaire'] * $quantite;
+
+                $table .= '
+        <tr>        
+            <td>' . $value['id_produit'] . '</td>
+            <td>' . $value['nom_produit'] . '</td>
+            <td>' . $value['prix_unitaire'] . ' €/kg</td>
+            <td>'. $quantite . ' kg</td>
+            <td>'. $total . ' €</td>
+        </tr>';
+
+            
         }
-       
-        $this->page .=' <div class= “col-12 mx-auto text-center py-3”><a href= "index.php?controller=ValidPanier&action=ValidPanier" class=“btn btn-success text-center” id=“idProduit”>Valider la commande</a>
-       </div>';
-        
-        $this->display();        
+
+        $table .= '                       
+        </tbody>
+        </table>
+        </div>
+
+        <div class= "container text-center my-4"><a class="btn btn-success text-center" href="index.php?controller=ValidPanier&action=ValidPanier" role="button">Valider le panier</a>
+        </div>';
+
+        $this->page .= $table;
+        $this->display();
     }
-
-    
 }
-
-
-
