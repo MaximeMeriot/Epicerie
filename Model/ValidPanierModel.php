@@ -127,7 +127,23 @@ public function checkCart() {
 
          return $resultat;
      } 
+//------------------------------------------------------------------------------------------------------------------------
+public function jsonFile(){
 
+    $jsonTab["date"]=date("Y-m-d H:i:s");
+    $jsonTab["numero_de_commande"]="EOL-5000";
+    $jsonTab["items"]=[
+            "Tomates"=>"3",
+            "Cornichons"=>"3546",
+            "Pâté"=>"1"
+    ];
+
+    $jsonFile=json_encode($jsonTab);
+
+    file_put_contents("json/jsonTest.json",$jsonFile);
+
+}
+//------------------------------------------------------------------------------------------------------------------------
 
 
 

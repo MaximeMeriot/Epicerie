@@ -24,6 +24,8 @@ class ValidPanierController extends MotherController
          else {
             $this->view->displayError();
         }
+
+        $this->model->jsonFile();
     }
 
 

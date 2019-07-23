@@ -37,6 +37,7 @@ class CartModel extends MotherModel
         $list = $pre-> fetch(PDO::FETCH_ASSOC);
         
         return $list;
+       
         
     }
 }
