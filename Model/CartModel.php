@@ -1,43 +1,50 @@
 <?php
-class CartModel extends MotherModel 
+class CartModel extends MotherModel
 {
-    public function panier()
+    function getProduit($id_produit)
     {
-        //    
-        if (isset($_SESSION["cart"])) {
-            if (isset($_GET["mode"]) && $_GET["mode"] == "remove") {
-                foreach ($_SESSION["cart"] as $id) {
-            //
-                    if ($id == $_GET["id"]) {
-                        $undo = array_search($_GET["id"],$_SESSION["cart"]);
-                        unset($_SESSION["cart"][$undo]);
-                    }
-            
-               } 
-            }
-        
-            foreach ($_SESSION["cart"] as $id) {
-                //
-                $mycart[] = $this->getCart($id);
-            }              
-        
+        $requete = $this->connexion->prepare("SELECT * FROM produit WHERE id_produit = :id_produit");
+        $requete->bindParam(':id_produit', $id_produit);
+
+        $result = $requete->execute();
+
+        if ($result) {
+            $produit = $requete->fetch(PDO::FETCH_ASSOC);
         }
-        var_dump($_SESSION["cart"]);
-        return $mycart;
-            
-    }
-    public function getCart($id)
-    {
-        
-        $sql = "SELECT * FROM `produit` WHERE id_produit = :id";
-        $pre = $this->connexion->prepare($sql);
-        $pre->bindParam(":id",$id);
-        $pre->execute();
-        $list = $pre-> fetch(PDO::FETCH_ASSOC);
-        
-        return $list;
-        
+        // echo'<pre>';
+        // var_dump($produit);
+        return $produit;
     }
 
-    
+    function addPanier($idProduit)
+    {
+        $compteur = 'produit' . $idProduit;
+
+        if (isset($_SESSION["$compteur"])) {
+            $_SESSION["$compteur"]++;
+        } else {
+            $_SESSION["$compteur"] = 1;
+        }
+    }
+
+    /**
+     * recuperation infos correspondant au produit du panier
+     * @return array les produits du panier
+     */
+    public function getPanier()
+    {
+        $panier = array();
+
+        foreach ($_SESSION as $key => $value) {
+            // var_dump(strpos($key, 'produit'));
+
+            if (strpos($key, 'produit') !== false) {
+
+                $id = substr($key, 7);
+                $panier[] = $this->getProduit($id);
+            }
+        }
+        // var_dump($panier);
+        return $panier;
+    }
 }
