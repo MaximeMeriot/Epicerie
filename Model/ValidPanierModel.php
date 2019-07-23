@@ -74,15 +74,9 @@ class ValidPanierModel extends MotherModel
             $requete->bindParam(':id_produit',$idClient);
         
 
-            $requete->execute();
-
-                 
+            $requete->execute();                 
 
         }
-   
-
-
-
 
     }
 //------------------------------------------------------------------------------------------------------------------------
