@@ -1,15 +1,10 @@
 <?php
-
-
 class HistoryView extends MotherView {
-
     protected $page;
 //--------------------------------------------------------------------------------------------------------------------------------------
     
 //--------------------------------------------------------------------------------------------------------------------------------------
-
     protected function searchHtml($page){
-
         return file_get_contents($page);
     }
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -19,27 +14,25 @@ class HistoryView extends MotherView {
   
     }
 //--------------------------------------------------------------------------------------------------------------------------------------
-
     public function displayHome(){
-
     $this->page.=$this->searchHTML("html/adminAccueil.html");
+
     $this->display();
 }
-
 //--------------------------------------------------------------------------------------------------------------------------------------
 public function displayList($list){
-
-
+    
+    $this->page .= '<div class="row col-12 mx-auto justify-content-center">
+    <a class="btn btn-info my-3 btn-block btn-lg"><h2><i class="fas fa-history"></i> Historique des commandes</h2></a>
+    </div>';
+    
     $table= "<h5 class='my-5'><u>Commandes :</u></h5>";
     
+    
     foreach($list as $key=>$value){
-
-
         $totalCommande=0;
         foreach($value['items'] as $i=>$element){
-
             $totalCommande=($element["prix_unitaire"]*$element["qte_prdt_commande"])+$totalCommande;
-
         }
 
         $table.='
@@ -52,7 +45,6 @@ public function displayList($list){
                 <th scope="col">Société: '.$value["entete"]["societe"].'</th> 
                 <th scope="col">'.$value["entete"]["date_commande"].'</th>
                 <th scope="col">Total TTC: '.$totalCommande.'€</th>
-
               </tr>
             </thead>
             <tbody>   
@@ -63,15 +55,12 @@ public function displayList($list){
               <th scope="col">Quantité</th>
               <th scope="col">Prix unitaire TTC</th> 
               <th scope="col">Total TTC</th>
-
             </tr>
           </thead>
                    
         ';
-
         
         foreach($value['items'] as $i=>$element){
-
             $table.='
             <tr>        
                 <td>'.($i+1).'</td>
@@ -83,29 +72,22 @@ public function displayList($list){
     
             <tr>';
     
-
         }
-
         $table.='                       
         </tbody>
         </table>
         </div>';
-
     }
-
-
-
-
-
     $this->page.=$table;
     $this->display();
-
 }
 // --------------------------------------------------------------------------
 public function noDisplayList() {
+
+    $this->page .= '<div class="row col-12 mx-auto justify-content-center">
+    <a class="btn btn-info my-3 btn-block btn-lg"><h2><i class="fas fa-history"></i> Historique des commandes</h2></a>
+    </div>';
     $this->page .= "<h4 class='text-center'>Vous n'avez aucune commande en cours !</h4>";
     $this->display();
 }
-
-
 }

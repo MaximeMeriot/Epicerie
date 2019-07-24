@@ -20,10 +20,11 @@ class ListView extends MotherView
             
         public function displayList($list)
     {
+        $this->page .= '<div class="row col-12 mx-auto justify-content-center">
+        <a class="btn btn-info my-3 btn-block btn-lg"><h2><i class="fas fa-clipboard-list"></i> Liste des produits</h2></a>
+        </div>';
 
-        $this->page .= '<h2 class = "text-center">Liste des produits disponibles </h2> ';
-
-        $this->page .= '<div class="row container mx-auto text-center col-12" id="liste">';
+        $this->page .= '<div class="row container mx-auto mb-4 text-center col-12" id="liste">';
 
 
         foreach ($list as $element) {
@@ -32,6 +33,10 @@ class ListView extends MotherView
             $quantite = 0;
             if (isset($_SESSION["$compteur"])){
                 $quantite = $_SESSION["$compteur"];
+
+                if ($quantite <0){
+                    $quantite =0;
+                }
             }           
         
             
@@ -45,9 +50,11 @@ class ListView extends MotherView
                 . '</h6>
                         <p class=" text-center text-dark">'
                 . $element['prix_unitaire'] . '€/kg'
-                . '</p> 
-                        <a href="index.php?controller=List&action=addCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-secondary id="idProduit">Ajouter au panier</a>
-                        <p class="card-text text-center">Quantité produit ajouté :'. $quantite . '  kg</p>
+                . '</p> <br />
+                        <a href="index.php?controller=List&action=addCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-success id="idProduit">+</a>
+                        <a href="index.php?controller=List&action=removeCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-danger id="idProduit">-</a>
+                        <br /><br />
+                        <p class="card-text text-center">Quantité produit ajouté : '. $quantite . '  kg</p>
                         <img class="card-img-top img-fluid py-3" src=" '
                 . $element['photo']
                 . '" alt="' . $element['nom_produit'] . '">
