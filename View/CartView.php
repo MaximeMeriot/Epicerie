@@ -41,7 +41,6 @@ class CartView extends MotherView
                 // if (isset($_SESSION["id_produit"])){
                 //     $id = $_SESSION["id_produit"];
                 // }
-                $totalCommande=0;
                 $quantite = $_SESSION['produit'.$value['id_produit']];
                 $total = $value['prix_unitaire'] * $quantite;
                 $totalCommande = $total + $totalCommande;
