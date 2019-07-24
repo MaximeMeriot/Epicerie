@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/Exception.php';
-
 class ValidPanierModel extends MotherModel
 {
     public function sendMail()
@@ -16,9 +15,7 @@ class ValidPanierModel extends MotherModel
         $nom = $_SESSION['nom'];
         $societe = $_SESSION['societe'];
         $email = $_SESSION['email'];
-
-        $message = "Bonjour ". " " . $prenom . " " .  $nom ." de l'entreprise ".  $societe .", votre commande est enregistrée";
-
+        $message = "Bonjour, votre commande est enregistrée";
 
         try {
             $mail->From = "marjo@lacan.me";
@@ -29,37 +26,26 @@ class ValidPanierModel extends MotherModel
             $mail->Body = $message;
             $mail->AddAddress($email, $nom, $prenom);
             $res = $mail->Send();
-
             // echo "Résultat de l'envoi : ";
             // var_dump($res);
             // var_dump($email);
-
         } catch (Exception $e) {
             echo 'Message non envoyé';
             echo 'Erreur: ' . $mail->ErrorInfo;
         }
     }
-//------------------------------------------------------------------------------------------------------------------------
-    public function validCommande($panier, $idClient){
-
-       $numCommande=$this->getNextNum();
-       $date=date("y.m.d");
-       echo 'mon var dump';
-       var_dump($panier); 
-
-       //--------Entete commande-------------------------------------------------------------------
-       $requete = $this->connexion->prepare("INSERT INTO entete_commande
+    //------------------------------------------------------------------------------------------------------------------------
+    public function validCommande($panier, $idClient)
+    {
+        $numCommande = $this->getNextNum();
+        $date = date("y.m.d");
+        //--------Entete commande-------------------------------------------------------------------
+        $requete = $this->connexion->prepare("INSERT INTO entete_commande
        VALUES (:num_commande,:date_commande,:id_client)");
-   
-       $requete->bindParam(':num_commande',$numCommande);
-       $requete->bindParam(':date_commande',$date);
-       $requete->bindParam(':id_client',$idClient);
-   
-       $requete->execute();
 
-        //--------Detail commande-------------------------------------------------------------------
-
-        foreach($panier as $value){
+        $requete->bindParam(':num_commande', $numCommande);
+        $requete->bindParam(':date_commande', $date);
+        $requete->bindParam(':id_client', $idClient);
 
             
             $etat_commande="Terminée";
@@ -78,8 +64,8 @@ class ValidPanierModel extends MotherModel
 
             $requete->execute();                 
 
+            $requete->execute();
         }
-
     }
 //------------------------------------------------------------------------------------------------------------------------
     public function getNextNum(){    
@@ -132,17 +118,24 @@ public function checkCart() {
 //------------------------------------------------------------------------------------------------------------------------
 public function jsonFile(){
 
-    $jsonTab["date"]=date("Y-m-d H:i:s");
-    $jsonTab["numero_de_commande"]="EOL-5000";
-    $jsonTab["items"]=[
-            "Tomates"=>"3",
-            "Cornichons"=>"3546",
-            "Pâté"=>"1"
-    ];
+            if (strpos($key, 'produit') !== false) {
+                echo '<pre>';
+                var_dump($key);
+                var_dump($value);
 
-    $jsonFile=json_encode($jsonTab);
+                $id = substr($key, 7);
+                if ($this->verifQte($id, $value)) {
+                    $this->updateStock($id, $value);
+                } else{
+                    $retour=false;
+                }
+            }
+        }
+        return $retour;
+    }
 
-    file_put_contents("json/jsonTest.json",$jsonFile);
+    public function verifQte($id_produit, $quantite)
+    {
 
 }
 //------------------------------------------------------------------------------------------------------------------------
@@ -178,14 +171,39 @@ function getProduit($id_produit)
     return $produit;
 }
 
+            $requete->bindParam(':id_produit', $id_produit);
+            $requete->execute();
+            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
+// var_dump($resultat);
 
+            if ($resultat['qte_stock'] < $quantite) {
+                return false;
+            } else{
+                return true;
+            }
+    }
 
+    public function updateStock($id_produit, $qty)
+    {
+        $requete = $this->connexion->prepare("UPDATE produit SET qte_stock = qte_stock-:qty WHERE id_produit = :id_produit");
+
+        $requete->bindParam(':id_produit', $id_produit);
+        $requete->bindParam(':qty', $qty);
+        $resultat = $requete->execute();
+        return $resultat;
+    }
+
+    public function jsonFile()
+    {
+        $jsonTab["date"] = date("Y-m-d H:i:s");
+        $jsonTab["numero_de_commande"] = "EOL-5000";
+        $jsonTab["items"] = [
+            "tomates" => "3",
+            "concombre" => "1"
+        ];
+
+        $jsonFile = json_encode($jsonTab);
+        file_put_contents("json/jsonTest.json", $jsonFile);
+    }
 }
-
-
-
-
-
-
-

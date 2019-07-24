@@ -4,40 +4,38 @@ class ListModel extends MotherModel
     function getList()
     {
         $requete = "SELECT * FROM produit";
-        $pre = $this ->connexion -> prepare($requete);
+        $pre = $this->connexion->prepare($requete);
         $pre->execute();
         $list = array();
-        $list = $pre-> fetchAll(PDO::FETCH_ASSOC);
-        
+        $list = $pre->fetchAll(PDO::FETCH_ASSOC);
+
         return $list;
     }
 
-    
+
     public function addCompteur($idProduit)
     {
 
         $compteur = 'produit' . $idProduit;
-    
-        if (isset($_SESSION["$compteur"])){
-            $_SESSION["$compteur"] ++;
-        
+
+        if (isset($_SESSION["$compteur"])) {
+            $_SESSION["$compteur"]++;
         } else {
             $_SESSION["$compteur"] = 1;
-
         }
-      
     }
 
     public function removeCompteur($idProduit)
     {
 
         $compteur = 'produit' . $idProduit;
-    
-        if (isset($_SESSION["$compteur"])){
-            $_SESSION["$compteur"] --;
-        }
-      
-    }
-   
 
+        if (isset($_SESSION["$compteur"])) {
+            $_SESSION["$compteur"]--;
+
+            if ($_SESSION["$compteur"] <= 0) {
+                $_SESSION["$compteur"] = 0;
+            }
+        }
+    }
 }
