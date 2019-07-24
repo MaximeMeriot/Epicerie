@@ -39,8 +39,6 @@ class ValidPanierModel extends MotherModel
     {
         $numCommande = $this->getNextNum();
         $date = date("y.m.d");
-        echo'mon var dump';
-        var_dump($panier);
         //--------Entete commande-------------------------------------------------------------------
         $requete = $this->connexion->prepare("INSERT INTO entete_commande
        VALUES (:num_commande,:date_commande,:id_client)");
@@ -58,11 +56,11 @@ class ValidPanierModel extends MotherModel
 
 
             $requete = $this->connexion->prepare("INSERT INTO detail_commande
-            VALUES (NULL,:etat_commande,:qte_produit_commande, :num_commande, :id_produit)");
+            VALUES (NULL,:etat_commande,:qte_prdt_commande, :num_commande, :id_produit)");
 
         
             $requete->bindParam(':etat_commande',$etat_commande);
-            $requete->bindParam(':qte_produit_commande',$quantité);
+            $requete->bindParam(':qte_prdt_commande',$quantite);
             $requete->bindParam(':num_commande',$numCommande);
             $requete->bindParam(':id_produit',$value['id_produit']);
         
