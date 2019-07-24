@@ -27,6 +27,8 @@ class CartView extends MotherView
         </thead>
         <tbody>                        
     ';
+        
+    $totalCommande = 0;
 
         foreach ($list as $value) {
             // var_dump(strpos($key, 'produit'));
