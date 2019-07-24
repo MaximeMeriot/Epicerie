@@ -12,12 +12,18 @@ class HistoryController extends MotherController {
     public function listAction(){
         $getList = $this->model->getList();
 
-    if(!($getList == 0)) {
+    if(isset($_SESSION['id'])) {
+        if(!($getList == 0)) {
         $this->view->displayList($getList);
     }
     else {
         $this->view->noDisplayList();
     }
+    }
+    else {
+        $this->view->notConnectedList();
+    }
+    
 
     }
 

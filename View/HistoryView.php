@@ -90,4 +90,12 @@ public function noDisplayList() {
     $this->page .= "<h4 class='text-center'>Vous n'avez aucune commande en cours !</h4>";
     $this->display();
 }
+
+public function notConnectedList(){
+    $this->page .= '<div class="row col-12 mx-auto justify-content-center">
+    <a class="btn btn-info my-3 btn-block btn-lg"><h2><i class="fas fa-history"></i> Historique des commandes</h2></a>
+    </div>';
+    $this->page .= "<h4 class='text-center mb-3'>Vous n'êtes pas connecté. <a href='index.php?controller=Connect&action=deconnexion'>Cliquez ici</a> pour vous connecter ou <a href='index.php?controller=connect&action=register'>ici</a> pour vous enregistrer</h4>";
+    $this->display();
+}
 }
