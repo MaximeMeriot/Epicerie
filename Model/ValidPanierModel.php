@@ -44,7 +44,8 @@ class ValidPanierModel extends MotherModel
 
        $numCommande=$this->getNextNum();
        $date=date("y.m.d");
-
+       echo 'mon var dump';
+       var_dump($panier); 
 
        //--------Entete commande-------------------------------------------------------------------
        $requete = $this->connexion->prepare("INSERT INTO entete_commande
@@ -60,8 +61,9 @@ class ValidPanierModel extends MotherModel
 
         foreach($panier as $value){
 
-            var_dump($panier);
+            
             $etat_commande="Terminée";
+            $quantite = $_SESSION['produit'.$value['id_produit']];
 
 
             $requete = $this->connexion->prepare("INSERT INTO detail_commande
@@ -69,9 +71,9 @@ class ValidPanierModel extends MotherModel
 
         
             $requete->bindParam(':etat_commande',$etat_commande);
-            $requete->bindParam(':qte_produit_commande',$value['qte']);
+            $requete->bindParam(':qte_produit_commande',$quantité);
             $requete->bindParam(':num_commande',$numCommande);
-            $requete->bindParam(':id_produit',$idClient);
+            $requete->bindParam(':id_produit',$value['id_produit']);
         
 
             $requete->execute();                 
@@ -93,39 +95,39 @@ class ValidPanierModel extends MotherModel
        
 // Gestion du stock           
 public function checkCart() {
-        foreach($_SESSION['cart'] as $element){
-            $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
+//         foreach($_SESSION['cart'] as $element){
+//             $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
         
-            $requete->bindParam(':id_produit', $element);
-            // $resultat = $this->connexion->query($requete);
-            $requete->execute();
-            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+//             $requete->bindParam(':id_produit', $element);
+//             // $resultat = $this->connexion->query($requete);
+//             $requete->execute();
+//             $resultat = $requete->fetch(PDO::FETCH_ASSOC);
  
-            if ($resultat['qte_stock']<1) {
-                return false;
-            }
+//             if ($resultat['qte_stock']<1) {
+//                 return false;
+//             }
 
-//             echo '<pre>';
-//             var_dump($resultat);
+// //             echo '<pre>';
+// //             var_dump($resultat);
 
-        }
-        foreach($_SESSION['cart'] as $element){
-            $this ->updateStock($element, 1);
-        }
-        return true;
-    }
+//         }
+//         foreach($_SESSION['cart'] as $element){
+//             $this ->updateStock($element, 1);
+//         }
+//         return true;
+//     }
 
    
-     public function updateStock($id_produit, $qty)
-     {
-         $requete = $this->connexion->prepare("UPDATE produit SET qte_stock = qte_stock-:qty WHERE id_produit = :id_produit");
+//      public function updateStock($id_produit, $qty)
+//      {
+//          $requete = $this->connexion->prepare("UPDATE produit SET qte_stock = qte_stock-:qty WHERE id_produit = :id_produit");
         
-         $requete->bindParam(':id_produit', $id_produit);
-         $requete->bindParam(':qty', $qty);
+//          $requete->bindParam(':id_produit', $id_produit);
+//          $requete->bindParam(':qty', $qty);
 
-         $resultat = $requete->execute();
+//          $resultat = $requete->execute();
 
-         return $resultat;
+//          return $resultat;
      } 
 //------------------------------------------------------------------------------------------------------------------------
 public function jsonFile(){
@@ -144,10 +146,46 @@ public function jsonFile(){
 
 }
 //------------------------------------------------------------------------------------------------------------------------
+public function getPanier()
+{
+    $panier = array();
+
+    foreach ($_SESSION as $key => $value) {
+        // var_dump(strpos($key, 'produit'));
+
+        if (strpos($key, 'produit') !== false) {
+
+            $id = substr($key, 7);
+            $panier[] = $this->getProduit($id);
+        }
+    }
+    
+    return $panier;
+}
+//------------------------------------------------------------------------------------------------------------------------
+function getProduit($id_produit)
+{
+    $requete = $this->connexion->prepare("SELECT * FROM produit WHERE id_produit = :id_produit");
+    $requete->bindParam(':id_produit', $id_produit);
+
+    $result = $requete->execute();
+
+    if ($result) {
+        $produit = $requete->fetch(PDO::FETCH_ASSOC);
+    }
+    // echo'<pre>';
+    // var_dump($produit);
+    return $produit;
+}
 
 
 
 
 }
+
+
+
+
+
 
 

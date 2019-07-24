@@ -24,8 +24,8 @@ class ValidPanierController extends MotherController
          else {
             $this->view->displayError();
         }
-        var_dump($_SESSION);
-        $this->model->validCommande($_SESSION, $_SESSION['id']);
+        
+        $this->model->validCommande($this->model->getPanier(), $_SESSION['id']);
         $this->model->jsonFile();
     }
 
