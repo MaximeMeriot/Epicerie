@@ -19,7 +19,8 @@ class CartView extends MotherView
             <th scope="col">id</th>
             <th scope="col">Nom</th>
             <th scope="col">Prix unitaire</th> 
-            <th scope="col">Quantité</th> 
+            <th scope="col">Quantité en stock</th> 
+            <th scope="col">Quantité choisie</th> 
            
             <th scope="col">Total</th>     
             <th scope="col"></th>     
@@ -38,6 +39,10 @@ class CartView extends MotherView
                 // var_dump($key);
                 // echo ' ';
 
+                // if (isset($_SESSION["id_produit"])){
+                //     $id = $_SESSION["id_produit"];
+                // }
+
                 $quantite = $_SESSION['produit'.$value['id_produit']];
                 $total = $value['prix_unitaire'] * $quantite;
 
@@ -47,6 +52,7 @@ class CartView extends MotherView
             <td>' . $value['id_produit'] . '</td>
             <td>' . $value['nom_produit'] . '</td>
             <td>' . $value['prix_unitaire'] . ' €/kg</td>
+            <td>' . $value['qte_stock'] . ' kg</td>
             <td>'. $quantite . ' kg</td>
             <td>'. $total . ' €</td>
         </tr>';
