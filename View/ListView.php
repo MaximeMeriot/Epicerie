@@ -51,8 +51,9 @@ class ListView extends MotherView
                         <p class=" text-center text-dark">'
                 . $element['prix_unitaire'] . '€/kg'
                 . '</p> <br />
-                        <a href="index.php?controller=List&action=addCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-success id="idProduit">+</a>
-                        <a href="index.php?controller=List&action=removeCompteur&idProduit=' . $element['id_produit'] . '" class="btn btn-danger id="idProduit">-</a>
+                        <a href="index.php?controller=List&action=addCompteur&idProduit=' . $element['id_produit'] . '" type = "button" class="btn btn-success text-success" id="idProduit">+</a>
+                        <div><form><input  class = "text-center" value = '. $quantite . '> </input><form></div>
+                        <a href="index.php?controller=List&action=removeCompteur&idProduit=' . $element['id_produit'] . '" type = "button"  class="btn btn-danger text-danger" id="idProduit">-</a>
                         <br /><br />
                         <p class="card-text text-center">Quantité produit ajouté : '. $quantite . '  kg</p>
                         <img class="card-img-top img-fluid py-3" src=" '
