@@ -167,17 +167,26 @@ function getProduit($id_produit)
         $resultat = $requete->execute();
         return $resultat;
     }
-
-    public function jsonFile()
+//--------------------------------------------------------------------------------------------------------------------------------------
+    public function jsonFile($panier)
     {
+    
+
+        foreach($panier as $value){
+            $nom_produit=$value['nom_produit'];
+            $quantite = $_SESSION['produit'.$value['id_produit']];
+            $itemTab[$nom_produit]=$quantite;
+
+        }
+
         $jsonTab["date"] = date("Y-m-d H:i:s");
         $jsonTab["numero_de_commande"] =  $_SESSION['num_commande'];
-        $jsonTab["items"] = [
-            "tomates" => "3",
-            "concombre" => "1"
-        ];
+        $jsonTab["items"] = $itemTab;
 
         $jsonFile = json_encode($jsonTab);
-        file_put_contents("json/jsonTest.json", $jsonFile);
+        file_put_contents("json/".$_SESSION['num_commande'].".json", $jsonFile);
     }
+
+//--------------------------------------------------------------------------------------------------------------------------------------
+
 }

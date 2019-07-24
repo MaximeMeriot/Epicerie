@@ -33,7 +33,7 @@ class ValidPanierController extends MotherController
         }
         
         $this->model->validCommande($this->model->getPanier(), $_SESSION['id']);
-        $this->model->jsonFile();
+        $this->model->jsonFile($this->model->getPanier());
     }
     }
 
