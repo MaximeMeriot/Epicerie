@@ -39,6 +39,8 @@ class ValidPanierModel extends MotherModel
     {
         $numCommande = $this->getNextNum();
         $date = date("y.m.d");
+        echo'mon var dump';
+        var_dump($panier);
         //--------Entete commande-------------------------------------------------------------------
         $requete = $this->connexion->prepare("INSERT INTO entete_commande
        VALUES (:num_commande,:date_commande,:id_client)");
@@ -47,7 +49,10 @@ class ValidPanierModel extends MotherModel
         $requete->bindParam(':date_commande', $date);
         $requete->bindParam(':id_client', $idClient);
 
-            
+        $requete->execute(); 
+
+        //------Detail commande------------------------------------------------------------------------
+            foreach($panier as $value){
             $etat_commande="Terminée";
             $quantite = $_SESSION['produit'.$value['id_produit']];
 
@@ -64,7 +69,6 @@ class ValidPanierModel extends MotherModel
 
             $requete->execute();                 
 
-            $requete->execute();
         }
     }
 //------------------------------------------------------------------------------------------------------------------------
@@ -116,28 +120,6 @@ public function checkCart() {
 //          return $resultat;
      } 
 //------------------------------------------------------------------------------------------------------------------------
-public function jsonFile(){
-
-            if (strpos($key, 'produit') !== false) {
-                echo '<pre>';
-                var_dump($key);
-                var_dump($value);
-
-                $id = substr($key, 7);
-                if ($this->verifQte($id, $value)) {
-                    $this->updateStock($id, $value);
-                } else{
-                    $retour=false;
-                }
-            }
-        }
-        return $retour;
-    }
-
-    public function verifQte($id_produit, $quantite)
-    {
-
-}
 //------------------------------------------------------------------------------------------------------------------------
 public function getPanier()
 {
@@ -171,18 +153,6 @@ function getProduit($id_produit)
     return $produit;
 }
 
-            $requete->bindParam(':id_produit', $id_produit);
-            $requete->execute();
-            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-
-// var_dump($resultat);
-
-            if ($resultat['qte_stock'] < $quantite) {
-                return false;
-            } else{
-                return true;
-            }
-    }
 
     public function updateStock($id_produit, $qty)
     {
