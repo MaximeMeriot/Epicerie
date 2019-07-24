@@ -75,6 +75,8 @@ class ValidPanierModel extends MotherModel
        $requete = $this->connexion->prepare('SELECT MAX(num_commande) FROM entete_commande');
        $requete->execute();
        $num = $requete->fetch(PDO::FETCH_ASSOC);
+
+       $_SESSION['num_commande']=$num['MAX(num_commande)']+1;
        
        return ($num['MAX(num_commande)']+1);
 
@@ -169,7 +171,7 @@ function getProduit($id_produit)
     public function jsonFile()
     {
         $jsonTab["date"] = date("Y-m-d H:i:s");
-        $jsonTab["numero_de_commande"] = "EOL-5000";
+        $jsonTab["numero_de_commande"] =  $_SESSION['num_commande'];
         $jsonTab["items"] = [
             "tomates" => "3",
             "concombre" => "1"
