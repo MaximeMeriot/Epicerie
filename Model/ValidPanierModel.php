@@ -84,41 +84,45 @@ class ValidPanierModel extends MotherModel
 //------------------------------------------------------------------------------------------------------------------------
        
 // Gestion du stock           
-public function checkCart() {
-//         foreach($_SESSION['cart'] as $element){
-//             $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
-        
-//             $requete->bindParam(':id_produit', $element);
-//             // $resultat = $this->connexion->query($requete);
-//             $requete->execute();
-//             $resultat = $requete->fetch(PDO::FETCH_ASSOC);
- 
-//             if ($resultat['qte_stock']<1) {
-//                 return false;
-//             }
+    public function checkCart()
+    {
+        $retour = true;
 
-// //             echo '<pre>';
-// //             var_dump($resultat);
+        foreach ($_SESSION as $key => $value) {
 
-//         }
-//         foreach($_SESSION['cart'] as $element){
-//             $this ->updateStock($element, 1);
-//         }
-//         return true;
-//     }
+            if (strpos($key, 'produit') !== false) {
+                // echo '<pre>';
+                // var_dump($key);
+                // var_dump($value);
 
-   
-//      public function updateStock($id_produit, $qty)
-//      {
-//          $requete = $this->connexion->prepare("UPDATE produit SET qte_stock = qte_stock-:qty WHERE id_produit = :id_produit");
-        
-//          $requete->bindParam(':id_produit', $id_produit);
-//          $requete->bindParam(':qty', $qty);
+                $id = substr($key, 7);
+                if ($this->verifQte($id, $value)) {
+                    $this->updateStock($id, $value);
+                } else{
+                    $retour=false;
+                }
+            }
+        }
+        return $retour;
+    }
 
-//          $resultat = $requete->execute();
+    public function verifQte($id_produit, $quantite)
+    {
 
-//          return $resultat;
-     } 
+            $requete = $this->connexion->prepare("SELECT qte_stock FROM produit WHERE id_produit = :id_produit");
+
+            $requete->bindParam(':id_produit', $id_produit);
+            $requete->execute();
+            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+// var_dump($resultat);
+
+            if ($resultat['qte_stock'] < $quantite) {
+                return false;
+            } else{
+                return true;
+            }
+    }
 //------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------
 public function getPanier()
