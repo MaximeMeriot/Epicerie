@@ -17,6 +17,13 @@ class ValidPanierController extends MotherController
 
     public function validPanierAction()
     {
+        var_dump($_SESSION['id']);
+        if(!isset($_SESSION['id'])) {
+            header('Location: index.php?controller=Connect&action=deconnexion');
+            return;
+        }
+        else {  
+        
         if ($this->model->checkCart()) {
             $this->view->displayValid();
             $this->model->sendMail();
@@ -24,10 +31,12 @@ class ValidPanierController extends MotherController
          else {
             $this->view->displayError();
         }
+        
+
         var_dump($_SESSION);
         $this->model->validCommande($_SESSION, $_SESSION['id']);
         $this->model->jsonFile();
     }
-
+    }
 
 }

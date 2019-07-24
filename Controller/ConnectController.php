@@ -54,7 +54,7 @@ class ConnectController extends MotherController {
             }
             else {
             $this->view->displayConnexionOkClient($liste['prenom_client']);
-            if(!isset($_SESSION)) {
+            if(!isset($_SESSION)) { 
             session_start([
                 'cookie_lifetime' => 3600,
             ]); 
