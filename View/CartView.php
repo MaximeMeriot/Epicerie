@@ -21,7 +21,6 @@ class CartView extends MotherView
             <th scope="col">Prix unitaire</th> 
             <th scope="col">Quantité en stock</th> 
             <th scope="col">Quantité choisie</th> 
-           
             <th scope="col">Total</th>     
             <th scope="col"></th>     
           </tr>
@@ -42,29 +41,28 @@ class CartView extends MotherView
                 // if (isset($_SESSION["id_produit"])){
                 //     $id = $_SESSION["id_produit"];
                 // }
-
+                $totalCommande=0;
                 $quantite = $_SESSION['produit'.$value['id_produit']];
                 $total = $value['prix_unitaire'] * $quantite;
-
+                $totalCommande = $total + $totalCommande;
 
                 $table .= '
         <tr>        
             <td>' . $value['id_produit'] . '</td>
             <td>' . $value['nom_produit'] . '</td>
             <td>' . $value['prix_unitaire'] . ' €/kg</td>
-            <td>' . $value['qte_stock'] . ' kg</td>
+            <td>' . $value['qte_stock'] . '</td>
             <td>'. $quantite . ' kg</td>
             <td>'. $total . ' €</td>
         </tr>';
-
             
         }
 
         $table .= '                       
         </tbody>
         </table>
-        </div>
-
+      
+        <div class= "container text-center my-4"><p><b>Total commande:</b> '. $totalCommande . '€ </p></div>
         <div class= "container text-center my-4"><a class="btn btn-success text-center" href="index.php?controller=ValidPanier&action=ValidPanier" role="button">Valider le panier</a>
         </div>';
 
@@ -72,3 +70,4 @@ class CartView extends MotherView
         $this->display();
     }
 }
+
